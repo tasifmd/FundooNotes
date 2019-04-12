@@ -28,7 +28,7 @@ import com.bridgelabz.fundoo.response.Response;
  */
 @RestController
 
-@RequestMapping("/user/notes")
+@RequestMapping("/user/note")
 
 //annotation for set environment file 
 @PropertySource("classpath:message.properties")
