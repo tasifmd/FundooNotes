@@ -1,4 +1,4 @@
-package com.bridgelabz.fundoo.applicationconfig;
+package com.bridgelabz.fundoo.config;
 
 import org.modelmapper.ModelMapper;
 import org.springframework.context.annotation.Bean;

@@ -1,4 +1,4 @@
-package com.bridgelabz.fundoo.applicationconfig;
+package com.bridgelabz.fundoo.config;
 
 
 import org.springframework.amqp.core.Binding;

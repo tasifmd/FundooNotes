@@ -10,10 +10,10 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
  * 
  */
 @SpringBootApplication
-public class FundooBackendApplicatin {
+public class FundooBackendApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(FundooBackendApplicatin.class, args);
+		SpringApplication.run(FundooBackendApplication.class, args);
 	}
 
 }
