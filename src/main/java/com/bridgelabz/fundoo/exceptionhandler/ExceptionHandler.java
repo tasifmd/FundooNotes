@@ -76,6 +76,11 @@ public class ExceptionHandler {
 		return new ResponseEntity<Response> (response , HttpStatus.OK);
 	}
 	
+	/**
+	 * Purpose : Exception handler function for LabelException
+	 * @param e
+	 * @return
+	 */
 	@org.springframework.web.bind.annotation.ExceptionHandler(value = LabelException.class)
 	public ResponseEntity<Response> labelExceptionHandler(LabelException e){
 		Response response = StatusHelper.statusInfo(e.getMessage(), e.getErrorCode());

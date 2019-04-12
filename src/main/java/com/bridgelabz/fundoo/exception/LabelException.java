@@ -1,5 +1,10 @@
 package com.bridgelabz.fundoo.exception;
 
+/**
+ * Purpose : Exception class for label
+ * @author : Tasif Mohammed
+ *
+ */
 public class LabelException extends RuntimeException{
 	
 	private static final long serialVersionUID = 1L;

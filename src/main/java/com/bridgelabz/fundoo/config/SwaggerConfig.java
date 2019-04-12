@@ -8,6 +8,11 @@ import springfox.documentation.spi.DocumentationType;
 import springfox.documentation.spring.web.plugins.Docket;
 import springfox.documentation.swagger2.annotations.EnableSwagger2;
 
+/**
+ * Purpose : Configuration class for swagger
+ * @author : Tasif Mohammed
+ *
+ */
 @Configuration
 @EnableSwagger2
 public class SwaggerConfig {
@@ -17,5 +22,5 @@ public class SwaggerConfig {
                 .select()
                 .apis(RequestHandlerSelectors.basePackage("com.bridgelabz.fundoo"))
                 .build();
-    }
+	}
 }

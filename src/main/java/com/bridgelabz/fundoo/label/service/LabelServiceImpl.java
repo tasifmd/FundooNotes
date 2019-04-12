@@ -46,6 +46,9 @@ public class LabelServiceImpl implements ILabelService{
 	@Autowired
 	Environment environment;
 	
+	/* (non-Javadoc)
+	 * @see com.bridgelabz.fundoo.label.service.ILabelService#createLabel(com.bridgelabz.fundoo.label.dto.LabelDto, java.lang.String)
+	 */
 	@Override
 	public Response createLabel(LabelDto labelDto, String token) {
 		long userId = userToken.tokenVerify(token);
@@ -74,6 +77,9 @@ public class LabelServiceImpl implements ILabelService{
 		return response;
 	}
 
+	/* (non-Javadoc)
+	 * @see com.bridgelabz.fundoo.label.service.ILabelService#deleteLabel(long, java.lang.String)
+	 */
 	@Override
 	public Response deleteLabel(long labelId, String token) {
 		long userId = userToken.tokenVerify(token);
@@ -91,6 +97,9 @@ public class LabelServiceImpl implements ILabelService{
 
 	}
 
+	/* (non-Javadoc)
+	 * @see com.bridgelabz.fundoo.label.service.ILabelService#updateLabel(long, java.lang.String, com.bridgelabz.fundoo.label.dto.LabelDto)
+	 */
 	@Override
 	public Response updateLabel(long labelId , String token ,LabelDto labelDto) {
 		long userId = userToken.tokenVerify(token);
@@ -109,6 +118,9 @@ public class LabelServiceImpl implements ILabelService{
 		return response;
 	}
 
+	/* (non-Javadoc)
+	 * @see com.bridgelabz.fundoo.label.service.ILabelService#getAllLabel(java.lang.String)
+	 */
 	@Override
 	public List<LabelDto> getAllLabel(String token) {
 		long userId = userToken.tokenVerify(token);
@@ -116,6 +128,7 @@ public class LabelServiceImpl implements ILabelService{
 		if(!user.isPresent()) {
 			throw new LabelException("Invalid input", -6);
 		}
+		
 		List<Label> labels = labelRepository.findByUserId(userId);
 		List<LabelDto> listLabel = new ArrayList<>();
 		for(Label noteLabel : labels) {
@@ -125,6 +138,9 @@ public class LabelServiceImpl implements ILabelService{
 		return listLabel;
 	}
 
+	/* (non-Javadoc)
+	 * @see com.bridgelabz.fundoo.label.service.ILabelService#addNoteToLabel(long, java.lang.String, long)
+	 */
 	@Override
 	public Response addNoteToLabel(long labelId, String token , long noteId) {
 		long userId = userToken.tokenVerify(token);
@@ -146,22 +162,13 @@ public class LabelServiceImpl implements ILabelService{
 		note.setModified(LocalDateTime.now());
 		labelRepository.save(label);
 		notesRepository.save(note);
-//		Optional<Label> availability = labelRepository.findByUserIdNoteIdAndLabelId(labelId, noteId, userId);
-//		if(availability.isPresent()) {
-//			throw new LabelException("Label already exist", -6);
-//		}
-//		Label label = labelRepository.findByLabelIdAndUserId(labelId, userId);
-//		label.setNoteId(noteId);
-//		label.setModifiedDate(LocalDateTime.now());
-//		Optional<Notes> notes = notesRepository.findById(noteId);
-//		notes.get().getListLabel().add(label);
-//		notes.get().setModified(LocalDateTime.now());
-//		labelRepository.save(label);
-//		notesRepository.save(notes.get());
 		Response response = StatusHelper.statusInfo(environment.getProperty("status.label.addedtonote"), Integer.parseInt(environment.getProperty("status.success.code")));
 		return response;
 	}
 
+	/* (non-Javadoc)
+	 * @see com.bridgelabz.fundoo.label.service.ILabelService#getLebelsOfNote(java.lang.String, long)
+	 */
 	@Override
 	public List<LabelDto> getLebelsOfNote(String token, long noteId) {
 		long userId = userToken.tokenVerify(token);
@@ -170,6 +177,9 @@ public class LabelServiceImpl implements ILabelService{
 			throw new LabelException("Invalid input", -6);
 		}
 		List<Label> labels = labelRepository.findAllLabelsByNoteId(noteId);
+		if(labels.isEmpty()) {
+			throw new LabelException("No lebel exist of this note", -6);
+		}
 		List<LabelDto> listLabel = new ArrayList<>();
 		for(Label noteLabel : labels) {
 			LabelDto labelDto = modelMapper.map(noteLabel, LabelDto.class);
@@ -177,6 +187,34 @@ public class LabelServiceImpl implements ILabelService{
 		}
 		return listLabel;
 		
+	}
+
+	/* (non-Javadoc)
+	 * @see com.bridgelabz.fundoo.label.service.ILabelService#removeLabelFromNote(long, java.lang.String, long)
+	 */
+	@Override
+	public Response removeLabelFromNote(long labelId ,String token , long noteId) {
+		long userId = userToken.tokenVerify(token);
+		Optional<User> user = userRepository.findById(userId);
+		if(!user.isPresent()) {
+			throw new LabelException("Invalid input", -6);
+		}
+		Label label = labelRepository.findByLabelIdAndUserId(labelId , userId);
+		if(label == null) {
+			throw new LabelException("No such lebel exist", -6);
+		}
+		Notes note =  notesRepository.findByIdAndUserId(noteId, userId);
+		if(note == null) {
+			throw new LabelException("No such note exist", -6);
+		}
+		label.setNoteId(0);
+		label.setModifiedDate(LocalDateTime.now());
+		note.getListLabel().remove(label);
+		note.setModified(LocalDateTime.now());
+		labelRepository.save(label);
+		notesRepository.save(note);
+		Response response = StatusHelper.statusInfo(environment.getProperty("status.label.removedfromnote"), Integer.parseInt(environment.getProperty("status.success.code")));
+		return response;
 	}
 	
 	

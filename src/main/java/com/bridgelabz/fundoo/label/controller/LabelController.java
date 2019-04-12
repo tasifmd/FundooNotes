@@ -18,6 +18,11 @@ import com.bridgelabz.fundoo.label.dto.LabelDto;
 import com.bridgelabz.fundoo.label.service.ILabelService;
 import com.bridgelabz.fundoo.response.Response;
 
+/**
+ * Controller class for label
+ * @author : Tasif Mohammed
+ *
+ */
 @RestController
 @RequestMapping("/user/note/label")
 public class LabelController {
@@ -25,39 +30,89 @@ public class LabelController {
 	@Autowired
 	ILabelService labelService;
 	
+	/**
+	 * Purpose : Function to create label
+	 * @param labelDto
+	 * @param token
+	 * @return
+	 */
 	@PostMapping("/create")
 	ResponseEntity<Response> createLabel(@RequestBody LabelDto labelDto , @RequestParam String token) {
 		Response statusResponse = labelService.createLabel(labelDto, token);
 		return new ResponseEntity<Response>(statusResponse,HttpStatus.ACCEPTED);
 	}
 	
+	/**
+	 * Purpose : Function to delete label 
+	 * @param token
+	 * @param labelId
+	 * @return
+	 */
 	@DeleteMapping("/delete")
 	ResponseEntity<Response> deleteLabel(@RequestParam String token , @RequestParam long labelId) {
 		Response statusResponse = labelService.deleteLabel(labelId, token);
 		return new ResponseEntity<Response>(statusResponse,HttpStatus.OK);
 	}
 	
+	/**
+	 * Purpose : Function to update label
+	 * @param token
+	 * @param labelId
+	 * @param labelDto
+	 * @return
+	 */
 	@PutMapping("/update")
 	ResponseEntity<Response> updateLabel(@RequestParam String token , @RequestParam long labelId , @RequestBody LabelDto labelDto){
 		Response statusResponse = labelService.updateLabel(labelId, token, labelDto);
 		return new ResponseEntity<Response>(statusResponse,HttpStatus.OK);
 	}
 	
+	/**
+	 * Purpose : Function to get all labels
+	 * @param token
+	 * @return
+	 */
 	@GetMapping("/getlabel")
 	List<LabelDto> getLabel(@RequestParam String token){
 		List<LabelDto> listLabel = labelService.getAllLabel(token);
 		return listLabel;
 	}
 	
+	/**
+	 * Purpose : Function to add note to label
+	 * @param labelId
+	 * @param token
+	 * @param noteId
+	 * @return
+	 */
 	@PutMapping("/addlebeltonote")
 	ResponseEntity<Response> addNoteToLebel(@RequestParam long labelId , @RequestParam String token , @RequestParam long noteId){
 		Response statusResponse = labelService.addNoteToLabel(labelId, token, noteId);
 		return new ResponseEntity<Response>(statusResponse,HttpStatus.OK);
 	}
 	
+	/**
+	 * Purpose : Function to get all labels of note
+	 * @param token
+	 * @param noteId
+	 * @return
+	 */
 	@GetMapping("/getlebelofnote")
 	List<LabelDto> getLebelOfNote(@RequestParam String token, @RequestParam long noteId){
 		List<LabelDto> listLabel = labelService.getLebelsOfNote(token, noteId);
 		return listLabel;
+	}
+	
+	/**
+	 * Purpose : Function to remove label from note
+	 * @param token
+	 * @param noteId
+	 * @param labelId
+	 * @return
+	 */
+	@PutMapping("/removefromnote")
+	ResponseEntity<Response> removeFromNote(@RequestParam String token, @RequestParam long noteId , @RequestParam long labelId){
+		Response statusResponse = labelService.removeLabelFromNote(labelId, token, noteId);
+		return new ResponseEntity<Response>(statusResponse,HttpStatus.OK);
 	}
 }
