@@ -101,7 +101,7 @@ public class UserServicesImplementation implements IUserServices {
 		email.setTo(userDTO.getEmail());
 		email.setSubject("Email Verification ");
 		try {
-			email.setBody( mailServise.getLink("http://localhost:8080/user/emailvalidation/",user.getUserId()));
+			email.setBody( mailServise.getLink("http://192.168.0.198:8080/user/emailvalidation/",user.getUserId()));
 		} catch (IllegalArgumentException | UnsupportedEncodingException e1) {
 			e1.printStackTrace();
 		}
@@ -192,7 +192,7 @@ public class UserServicesImplementation implements IUserServices {
 		emailObj.setTo(email);
 		emailObj.setSubject("Forgot Password ");
 		try {
-			emailObj.setBody( mailServise.getLink("http://localhost:8080/user/forgotpassword/",user.get().getUserId()));
+			emailObj.setBody( mailServise.getLink("http://192.168.0.198:8080/user/forgotpassword/",user.get().getUserId()));
 		} catch (IllegalArgumentException | UnsupportedEncodingException e1) {
 			e1.printStackTrace();
 		}

@@ -5,6 +5,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 
 import com.bridgelabz.fundoo.exception.EmailException;
+import com.bridgelabz.fundoo.exception.LabelException;
 import com.bridgelabz.fundoo.exception.LoginException;
 import com.bridgelabz.fundoo.exception.NotesException;
 import com.bridgelabz.fundoo.exception.RegistrationException;
@@ -71,6 +72,12 @@ public class ExceptionHandler {
 	 */
 	@org.springframework.web.bind.annotation.ExceptionHandler(value = TokenException.class)
 	public ResponseEntity<Response> tokenExceptionHandler(NotesException e){
+		Response response = StatusHelper.statusInfo(e.getMessage(), e.getErrorCode());
+		return new ResponseEntity<Response> (response , HttpStatus.OK);
+	}
+	
+	@org.springframework.web.bind.annotation.ExceptionHandler(value = LabelException.class)
+	public ResponseEntity<Response> labelExceptionHandler(LabelException e){
 		Response response = StatusHelper.statusInfo(e.getMessage(), e.getErrorCode());
 		return new ResponseEntity<Response> (response , HttpStatus.OK);
 	}

@@ -16,6 +16,7 @@ import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 
+import com.bridgelabz.fundoo.label.model.Label;
 import com.bridgelabz.fundoo.notes.model.Notes;
 
 
@@ -66,6 +67,9 @@ public class User{
 
 	@OneToMany(cascade = CascadeType.ALL)
 	private List<Notes> notes;
+	
+	@OneToMany(cascade = CascadeType.ALL)
+	private List<Label> label;
 	
 	public User() {
 		super();
@@ -143,12 +147,20 @@ public class User{
 		this.notes = notes;
 	}
 
+	public List<Label> getLabel() {
+		return label;
+	}
+
+	public void setLabel(List<Label> label) {
+		this.label = label;
+	}
+
 	@Override
 	public String toString() {
 		return "User [userId=" + userId + ", name=" + name + ", email=" + email + ", password=" + password
 				+ ", mobileNumber=" + mobileNumber + ", isVarified=" + isVarified + ", registeredDate=" + registeredDate
-				+ ", updatedDate=" + updatedDate + ", notes=" + notes + "]";
-	}	
+				+ ", updatedDate=" + updatedDate + ", notes=" + notes + ", label=" + label + "]";
+	}
 	
 	
 }

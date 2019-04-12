@@ -8,7 +8,7 @@ package com.bridgelabz.fundoo.exception;
 public class TokenException extends RuntimeException{
 
 	private static final long serialVersionUID = 1L;
-	int errorCode;
+	private int errorCode;
 	public TokenException(String message,int errorCode) {
 		super(message);
 		this.errorCode = errorCode;

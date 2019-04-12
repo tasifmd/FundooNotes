@@ -2,13 +2,18 @@ package com.bridgelabz.fundoo.notes.model;
 
 import java.io.Serializable;
 import java.time.LocalDateTime;
+import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
+
+import com.bridgelabz.fundoo.label.model.Label;
 
 @Entity
 @Table(name = "notes")
@@ -44,6 +49,9 @@ public class Notes implements Serializable{
 	
 	@Column(name = "modified")
 	private LocalDateTime modified;
+	
+	@OneToMany(cascade = CascadeType.ALL)
+	private List<Label> listLabel;
 	
 	public Notes() {
 		super();
@@ -102,12 +110,19 @@ public class Notes implements Serializable{
 	public void setUserId(long userId) {
 		this.userId = userId;
 	}
+	public List<Label> getListLabel() {
+		return listLabel;
+	}
+	public void setListLabel(List<Label> listLabel) {
+		this.listLabel = listLabel;
+	}
 	@Override
 	public String toString() {
 		return "Notes [id=" + id + ", userId=" + userId + ", title=" + title + ", description=" + description
 				+ ", isPin=" + isPin + ", isArchive=" + isArchive + ", isTrash=" + isTrash + ", created=" + created
-				+ ", modified=" + modified + "]";
+				+ ", modified=" + modified + ", listLabel=" + listLabel + "]";
 	}
+	
 	
 	
 }

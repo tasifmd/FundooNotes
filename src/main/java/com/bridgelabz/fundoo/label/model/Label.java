@@ -1,4 +1,4 @@
-package com.bridgelabz.fundoo.notes.model;
+package com.bridgelabz.fundoo.label.model;
 
 import java.time.LocalDateTime;
 
@@ -18,7 +18,7 @@ public class Label {
 	@Id
 	@Column(name = "labelId")
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	private Long labelId;
+	private long labelId;
 	
 	@Column(name = "labelName")
 	@NotNull(message = "Label name can not be null")
@@ -30,12 +30,22 @@ public class Label {
 	
 	@Column(name = "modifiedDate")
 	private LocalDateTime modifiedDate;
+	
+	@Column(name = "noteId")
+	private long noteId;
+	
+	@Column(name = "userId")
+	private long userId;
+	
+	public Label() {
+		super();
+	}
 
-	public Long getLabelId() {
+	public long getLabelId() {
 		return labelId;
 	}
 
-	public void setLabelId(Long labelId) {
+	public void setLabelId(long labelId) {
 		this.labelId = labelId;
 	}
 
@@ -62,7 +72,27 @@ public class Label {
 	public void setModifiedDate(LocalDateTime modifiedDate) {
 		this.modifiedDate = modifiedDate;
 	}
-	
-	
+
+	public long getNoteId() {
+		return noteId;
+	}
+
+	public void setNoteId(long noteId) {
+		this.noteId = noteId;
+	}
+
+	public long getUserId() {
+		return userId;
+	}
+
+	public void setUserId(long userId) {
+		this.userId = userId;
+	}
+
+	@Override
+	public String toString() {
+		return "Label [labelId=" + labelId + ", labelName=" + labelName + ", createdDate=" + createdDate
+				+ ", modifiedDate=" + modifiedDate + ", noteId=" + noteId + ", userId=" + userId + "]";
+	}
 	
 }

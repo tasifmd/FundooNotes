@@ -1,15 +1,10 @@
 package com.bridgelabz.fundoo.exception;
 
-/**
- * Purpose : Notes exception class
- * @author Tasif Mohammed
- *
- */
-public class NotesException extends RuntimeException{
-
+public class LabelException extends RuntimeException{
+	
 	private static final long serialVersionUID = 1L;
 	private int errorCode;
-	public NotesException(String message , int errorCode) {
+	public LabelException(String message , int errorCode) {
 		super(message);
 		this.errorCode = errorCode;
 	}
