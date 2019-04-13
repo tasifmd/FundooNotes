@@ -105,3 +105,129 @@ com.auth0.jwt.exceptions.JWTDecodeException: The string '»ù\ÔøΩÔøΩÔøΩÔøΩÔøΩÔø
 	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61) [tomcat-embed-core-9.0.16.jar:9.0.16]
 	at java.base/java.lang.Thread.run(Thread.java:844) [na:na]
 
+2019-04-13 13:31:41.197  INFO 3854 --- [RMI TCP Connection(230)-127.0.0.1] inMXBeanRegistrar$SpringApplicationAdmin : Application shutdown requested.
+2019-04-13 13:31:41.301  INFO 3854 --- [RMI TCP Connection(230)-127.0.0.1] o.s.a.r.l.SimpleMessageListenerContainer : Waiting for workers to finish.
+2019-04-13 13:31:41.666  INFO 3854 --- [RMI TCP Connection(230)-127.0.0.1] o.s.a.r.l.SimpleMessageListenerContainer : Successfully waited for workers to finish.
+2019-04-13 13:31:41.670  INFO 3854 --- [RMI TCP Connection(230)-127.0.0.1] o.s.a.r.l.SimpleMessageListenerContainer : Shutdown ignored - container is not active already
+2019-04-13 13:31:41.670  INFO 3854 --- [RMI TCP Connection(230)-127.0.0.1] o.s.s.concurrent.ThreadPoolTaskExecutor  : Shutting down ExecutorService 'applicationTaskExecutor'
+2019-04-13 13:31:41.678  INFO 3854 --- [RMI TCP Connection(230)-127.0.0.1] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2019-04-13 13:31:41.743  INFO 3854 --- [RMI TCP Connection(230)-127.0.0.1] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2019-04-13 13:31:41.775  INFO 3854 --- [RMI TCP Connection(230)-127.0.0.1] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2019-04-13 14:51:45.625  INFO 25473 --- [main] c.b.fundoo.FundooBackendApplication      : Starting FundooBackendApplication on admin1-desktop with PID 25473 (/home/admin1/Desktop/Tasif/STSWorkspace/BridgeLabz/FundooBackend/target/classes started by admin1 in /home/admin1/Desktop/Tasif/STSWorkspace/BridgeLabz/FundooBackend)
+2019-04-13 14:51:45.627  INFO 25473 --- [main] c.b.fundoo.FundooBackendApplication      : No active profile set, falling back to default profiles: default
+2019-04-13 14:51:49.713  INFO 25473 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data repositories in DEFAULT mode.
+2019-04-13 14:51:49.863  INFO 25473 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 122ms. Found 3 repository interfaces.
+2019-04-13 14:51:50.199  INFO 25473 --- [main] trationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.amqp.rabbit.annotation.RabbitBootstrapConfiguration' of type [org.springframework.amqp.rabbit.annotation.RabbitBootstrapConfiguration$$EnhancerBySpringCGLIB$$4b5897cf] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2019-04-13 14:51:50.276  INFO 25473 --- [main] trationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration' of type [org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration$$EnhancerBySpringCGLIB$$84ecd9a1] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2019-04-13 14:51:51.027  INFO 25473 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8080 (http)
+2019-04-13 14:51:51.101  INFO 25473 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2019-04-13 14:51:51.102  INFO 25473 --- [main] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.16]
+2019-04-13 14:51:51.147  INFO 25473 --- [main] o.a.catalina.core.AprLifecycleListener   : The APR based Apache Tomcat Native library which allows optimal performance in production environments was not found on the java.library.path: [/usr/java/packages/lib:/usr/lib/x86_64-linux-gnu/jni:/lib/x86_64-linux-gnu:/usr/lib/x86_64-linux-gnu:/usr/lib/jni:/lib:/usr/lib]
+2019-04-13 14:51:51.444  INFO 25473 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2019-04-13 14:51:51.444  INFO 25473 --- [main] o.s.web.context.ContextLoader            : Root WebApplicationContext: initialization completed in 5623 ms
+2019-04-13 14:51:51.756  INFO 25473 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2019-04-13 14:51:52.008  INFO 25473 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2019-04-13 14:51:52.141  INFO 25473 --- [main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [
+	name: default
+	...]
+2019-04-13 14:51:52.312  INFO 25473 --- [main] org.hibernate.Version                    : HHH000412: Hibernate Core {5.3.7.Final}
+2019-04-13 14:51:52.319  INFO 25473 --- [main] org.hibernate.cfg.Environment            : HHH000206: hibernate.properties not found
+2019-04-13 14:51:52.700  INFO 25473 --- [main] o.hibernate.annotations.common.Version   : HCANN000001: Hibernate Commons Annotations {5.0.4.Final}
+2019-04-13 14:51:52.973  INFO 25473 --- [main] org.hibernate.dialect.Dialect            : HHH000400: Using dialect: org.hibernate.dialect.MySQL5Dialect
+2019-04-13 14:51:55.130  INFO 25473 --- [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2019-04-13 14:51:56.215  WARN 25473 --- [main] aWebConfiguration$JpaWebMvcConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2019-04-13 14:51:56.461  INFO 25473 --- [main] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'applicationTaskExecutor'
+2019-04-13 14:51:56.775  INFO 25473 --- [main] d.s.w.p.DocumentationPluginsBootstrapper : Context refreshed
+2019-04-13 14:51:56.809  INFO 25473 --- [main] d.s.w.p.DocumentationPluginsBootstrapper : Found 1 custom documentation plugin(s)
+2019-04-13 14:51:56.816  INFO 25473 --- [main] s.d.s.w.s.ApiListingReferenceScanner     : Scanning for api listing references
+2019-04-13 14:51:57.018  INFO 25473 --- [main] o.s.a.r.c.CachingConnectionFactory       : Attempting to connect to: [localhost:5672]
+2019-04-13 14:51:57.224  INFO 25473 --- [main] o.s.a.r.c.CachingConnectionFactory       : Created new connection: rabbitConnectionFactory#eb1e868:0/SimpleConnection@15e748b5 [delegate=amqp://guest@127.0.0.1:5672/, localPort= 55944]
+2019-04-13 14:51:57.350  INFO 25473 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8080 (http) with context path ''
+2019-04-13 14:51:57.381  INFO 25473 --- [main] c.b.fundoo.FundooBackendApplication      : Started FundooBackendApplication in 13.197 seconds (JVM running for 16.405)
+2019-04-13 14:52:04.481  INFO 25473 --- [http-nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2019-04-13 14:52:04.482  INFO 25473 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2019-04-13 14:52:04.487  INFO 25473 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 5 ms
+2019-04-13 16:56:52.825  INFO 25473 --- [RMI TCP Connection(129)-127.0.0.1] inMXBeanRegistrar$SpringApplicationAdmin : Application shutdown requested.
+2019-04-13 16:56:52.831  INFO 25473 --- [RMI TCP Connection(129)-127.0.0.1] o.s.a.r.l.SimpleMessageListenerContainer : Waiting for workers to finish.
+2019-04-13 16:56:53.590  INFO 25473 --- [RMI TCP Connection(129)-127.0.0.1] o.s.a.r.l.SimpleMessageListenerContainer : Successfully waited for workers to finish.
+2019-04-13 16:56:53.594  INFO 25473 --- [RMI TCP Connection(129)-127.0.0.1] o.s.a.r.l.SimpleMessageListenerContainer : Shutdown ignored - container is not active already
+2019-04-13 16:56:53.594  INFO 25473 --- [RMI TCP Connection(129)-127.0.0.1] o.s.s.concurrent.ThreadPoolTaskExecutor  : Shutting down ExecutorService 'applicationTaskExecutor'
+2019-04-13 16:56:53.599  INFO 25473 --- [RMI TCP Connection(129)-127.0.0.1] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2019-04-13 16:56:53.601  INFO 25473 --- [RMI TCP Connection(129)-127.0.0.1] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2019-04-13 16:56:53.604  INFO 25473 --- [RMI TCP Connection(129)-127.0.0.1] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2019-04-13 16:56:55.116  INFO 444 --- [main] c.b.fundoo.FundooBackendApplication      : Starting FundooBackendApplication on admin1-desktop with PID 444 (/home/admin1/Desktop/Tasif/STSWorkspace/BridgeLabz/FundooBackend/target/classes started by admin1 in /home/admin1/Desktop/Tasif/STSWorkspace/BridgeLabz/FundooBackend)
+2019-04-13 16:56:55.118  INFO 444 --- [main] c.b.fundoo.FundooBackendApplication      : No active profile set, falling back to default profiles: default
+2019-04-13 16:56:55.733  INFO 444 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data repositories in DEFAULT mode.
+2019-04-13 16:56:55.781  INFO 444 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 44ms. Found 3 repository interfaces.
+2019-04-13 16:56:55.974  INFO 444 --- [main] trationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.amqp.rabbit.annotation.RabbitBootstrapConfiguration' of type [org.springframework.amqp.rabbit.annotation.RabbitBootstrapConfiguration$$EnhancerBySpringCGLIB$$b5c8132a] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2019-04-13 16:56:56.026  INFO 444 --- [main] trationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration' of type [org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration$$EnhancerBySpringCGLIB$$ef5c54fc] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2019-04-13 16:56:56.259  INFO 444 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8080 (http)
+2019-04-13 16:56:56.281  INFO 444 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2019-04-13 16:56:56.281  INFO 444 --- [main] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.16]
+2019-04-13 16:56:56.286  INFO 444 --- [main] o.a.catalina.core.AprLifecycleListener   : The APR based Apache Tomcat Native library which allows optimal performance in production environments was not found on the java.library.path: [/usr/java/packages/lib:/usr/lib/x86_64-linux-gnu/jni:/lib/x86_64-linux-gnu:/usr/lib/x86_64-linux-gnu:/usr/lib/jni:/lib:/usr/lib]
+2019-04-13 16:56:56.350  INFO 444 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2019-04-13 16:56:56.350  INFO 444 --- [main] o.s.web.context.ContextLoader            : Root WebApplicationContext: initialization completed in 1203 ms
+2019-04-13 16:56:56.454  INFO 444 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2019-04-13 16:56:56.513  INFO 444 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2019-04-13 16:56:56.558  INFO 444 --- [main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [
+	name: default
+	...]
+2019-04-13 16:56:56.587  INFO 444 --- [main] org.hibernate.Version                    : HHH000412: Hibernate Core {5.3.7.Final}
+2019-04-13 16:56:56.588  INFO 444 --- [main] org.hibernate.cfg.Environment            : HHH000206: hibernate.properties not found
+2019-04-13 16:56:56.654  INFO 444 --- [main] o.hibernate.annotations.common.Version   : HCANN000001: Hibernate Commons Annotations {5.0.4.Final}
+2019-04-13 16:56:56.720  INFO 444 --- [main] org.hibernate.dialect.Dialect            : HHH000400: Using dialect: org.hibernate.dialect.MySQL5Dialect
+2019-04-13 16:56:57.447  INFO 444 --- [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2019-04-13 16:56:57.943  WARN 444 --- [main] aWebConfiguration$JpaWebMvcConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2019-04-13 16:56:58.122  INFO 444 --- [main] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'applicationTaskExecutor'
+2019-04-13 16:56:58.315  INFO 444 --- [main] d.s.w.p.DocumentationPluginsBootstrapper : Context refreshed
+2019-04-13 16:56:58.324  INFO 444 --- [main] d.s.w.p.DocumentationPluginsBootstrapper : Found 1 custom documentation plugin(s)
+2019-04-13 16:56:58.333  INFO 444 --- [main] s.d.s.w.s.ApiListingReferenceScanner     : Scanning for api listing references
+2019-04-13 16:56:58.518  INFO 444 --- [main] o.s.a.r.c.CachingConnectionFactory       : Attempting to connect to: [localhost:5672]
+2019-04-13 16:56:58.535  INFO 444 --- [main] o.s.a.r.c.CachingConnectionFactory       : Created new connection: rabbitConnectionFactory#4cd9ee2c:0/SimpleConnection@12a8d03b [delegate=amqp://guest@127.0.0.1:5672/, localPort= 56978]
+2019-04-13 16:56:58.587  INFO 444 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8080 (http) with context path ''
+2019-04-13 16:56:58.590  INFO 444 --- [main] c.b.fundoo.FundooBackendApplication      : Started FundooBackendApplication in 3.656 seconds (JVM running for 4.049)
+2019-04-13 16:57:04.510  INFO 444 --- [http-nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2019-04-13 16:57:04.511  INFO 444 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2019-04-13 16:57:04.520  INFO 444 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 9 ms
+2019-04-13 16:57:32.475  INFO 444 --- [RMI TCP Connection(3)-127.0.0.1] inMXBeanRegistrar$SpringApplicationAdmin : Application shutdown requested.
+2019-04-13 16:57:32.479  INFO 444 --- [RMI TCP Connection(3)-127.0.0.1] o.s.a.r.l.SimpleMessageListenerContainer : Waiting for workers to finish.
+2019-04-13 16:57:32.577  INFO 444 --- [RMI TCP Connection(3)-127.0.0.1] o.s.a.r.l.SimpleMessageListenerContainer : Successfully waited for workers to finish.
+2019-04-13 16:57:32.579  INFO 444 --- [RMI TCP Connection(3)-127.0.0.1] o.s.a.r.l.SimpleMessageListenerContainer : Shutdown ignored - container is not active already
+2019-04-13 16:57:32.580  INFO 444 --- [RMI TCP Connection(3)-127.0.0.1] o.s.s.concurrent.ThreadPoolTaskExecutor  : Shutting down ExecutorService 'applicationTaskExecutor'
+2019-04-13 16:57:32.589  INFO 444 --- [RMI TCP Connection(3)-127.0.0.1] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2019-04-13 16:57:32.591  INFO 444 --- [RMI TCP Connection(3)-127.0.0.1] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2019-04-13 16:57:32.594  INFO 444 --- [RMI TCP Connection(3)-127.0.0.1] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2019-04-13 16:57:38.116  INFO 549 --- [main] c.b.fundoo.FundooBackendApplication      : Starting FundooBackendApplication on admin1-desktop with PID 549 (/home/admin1/Desktop/Tasif/STSWorkspace/BridgeLabz/FundooBackend/target/classes started by admin1 in /home/admin1/Desktop/Tasif/STSWorkspace/BridgeLabz/FundooBackend)
+2019-04-13 16:57:38.118  INFO 549 --- [main] c.b.fundoo.FundooBackendApplication      : No active profile set, falling back to default profiles: default
+2019-04-13 16:57:38.723  INFO 549 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data repositories in DEFAULT mode.
+2019-04-13 16:57:38.764  INFO 549 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 37ms. Found 3 repository interfaces.
+2019-04-13 16:57:38.943  INFO 549 --- [main] trationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.amqp.rabbit.annotation.RabbitBootstrapConfiguration' of type [org.springframework.amqp.rabbit.annotation.RabbitBootstrapConfiguration$$EnhancerBySpringCGLIB$$26b06c44] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2019-04-13 16:57:38.993  INFO 549 --- [main] trationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration' of type [org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration$$EnhancerBySpringCGLIB$$6044ae16] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2019-04-13 16:57:39.208  INFO 549 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8080 (http)
+2019-04-13 16:57:39.226  INFO 549 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2019-04-13 16:57:39.226  INFO 549 --- [main] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.16]
+2019-04-13 16:57:39.230  INFO 549 --- [main] o.a.catalina.core.AprLifecycleListener   : The APR based Apache Tomcat Native library which allows optimal performance in production environments was not found on the java.library.path: [/usr/java/packages/lib:/usr/lib/x86_64-linux-gnu/jni:/lib/x86_64-linux-gnu:/usr/lib/x86_64-linux-gnu:/usr/lib/jni:/lib:/usr/lib]
+2019-04-13 16:57:39.298  INFO 549 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2019-04-13 16:57:39.298  INFO 549 --- [main] o.s.web.context.ContextLoader            : Root WebApplicationContext: initialization completed in 1142 ms
+2019-04-13 16:57:39.405  INFO 549 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2019-04-13 16:57:39.462  INFO 549 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2019-04-13 16:57:39.511  INFO 549 --- [main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [
+	name: default
+	...]
+2019-04-13 16:57:39.539  INFO 549 --- [main] org.hibernate.Version                    : HHH000412: Hibernate Core {5.3.7.Final}
+2019-04-13 16:57:39.540  INFO 549 --- [main] org.hibernate.cfg.Environment            : HHH000206: hibernate.properties not found
+2019-04-13 16:57:39.604  INFO 549 --- [main] o.hibernate.annotations.common.Version   : HCANN000001: Hibernate Commons Annotations {5.0.4.Final}
+2019-04-13 16:57:39.669  INFO 549 --- [main] org.hibernate.dialect.Dialect            : HHH000400: Using dialect: org.hibernate.dialect.MySQL5Dialect
+2019-04-13 16:57:40.377  INFO 549 --- [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2019-04-13 16:57:40.811  WARN 549 --- [main] aWebConfiguration$JpaWebMvcConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2019-04-13 16:57:40.966  INFO 549 --- [main] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'applicationTaskExecutor'
+2019-04-13 16:57:41.135  INFO 549 --- [main] d.s.w.p.DocumentationPluginsBootstrapper : Context refreshed
+2019-04-13 16:57:41.143  INFO 549 --- [main] d.s.w.p.DocumentationPluginsBootstrapper : Found 1 custom documentation plugin(s)
+2019-04-13 16:57:41.151  INFO 549 --- [main] s.d.s.w.s.ApiListingReferenceScanner     : Scanning for api listing references
+2019-04-13 16:57:41.322  INFO 549 --- [main] o.s.a.r.c.CachingConnectionFactory       : Attempting to connect to: [localhost:5672]
+2019-04-13 16:57:41.337  INFO 549 --- [main] o.s.a.r.c.CachingConnectionFactory       : Created new connection: rabbitConnectionFactory#12aa2cca:0/SimpleConnection@259ae1a9 [delegate=amqp://guest@127.0.0.1:5672/, localPort= 57020]
+2019-04-13 16:57:41.380  INFO 549 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8080 (http) with context path ''
+2019-04-13 16:57:41.382  INFO 549 --- [main] c.b.fundoo.FundooBackendApplication      : Started FundooBackendApplication in 3.474 seconds (JVM running for 3.899)
+2019-04-13 16:57:46.030  INFO 549 --- [http-nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2019-04-13 16:57:46.031  INFO 549 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2019-04-13 16:57:46.036  INFO 549 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 5 ms
