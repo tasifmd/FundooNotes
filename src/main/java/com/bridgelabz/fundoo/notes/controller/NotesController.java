@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -46,7 +47,7 @@ public class NotesController {
 	 * @return
 	 */
 	@PostMapping("/create")
-	public ResponseEntity<Response> creatingNote(@RequestBody NotesDto notesDto , @RequestParam String token){
+	public ResponseEntity<Response> creatingNote(@RequestBody NotesDto notesDto , @RequestHeader String token){
 		logger.info(notesDto.toString());
 		Response responseStatus = noteService.createNote(notesDto, token);
 		return new ResponseEntity<Response>(responseStatus,HttpStatus.OK);
@@ -60,7 +61,7 @@ public class NotesController {
 	 * @return
 	 */
 	@PutMapping("/update")
-	public ResponseEntity<Response> updatingNote(@RequestBody NotesDto notesDto , @RequestParam String token , @RequestParam long noteId){
+	public ResponseEntity<Response> updatingNote(@RequestBody NotesDto notesDto , @RequestHeader String token , @RequestParam long noteId){
 		logger.info(notesDto.toString());
 		Response responseStatus = noteService.updateNote(notesDto, token , noteId);
 		return new ResponseEntity<Response> (responseStatus,HttpStatus.ACCEPTED);
@@ -74,7 +75,7 @@ public class NotesController {
 	 * @return
 	 */
 	@PutMapping("/delete")
-	public ResponseEntity<Response> deletingNote(@RequestParam String token ,@RequestParam long noteId){
+	public ResponseEntity<Response> deletingNote(@RequestHeader String token ,@RequestParam long noteId){
 		Response responseStatus = noteService.delete(token, noteId);
 		return new ResponseEntity<Response> (responseStatus,HttpStatus.OK);
 	}
@@ -85,7 +86,7 @@ public class NotesController {
 	 * @return
 	 */
 	@GetMapping("/getallnotes")
-	public List<NotesDto>  getAllNotes(@RequestParam String token) {
+	public List<NotesDto>  getAllNotes(@RequestHeader String token) {
 		List<NotesDto> listnotes = noteService.getAllNotes(token);
 		return listnotes;
 	}
@@ -97,7 +98,7 @@ public class NotesController {
 	 * @return
 	 */
 	@PutMapping("/pin")
-	public ResponseEntity<Response> pinNote(@RequestParam String token , @RequestParam long noteId){
+	public ResponseEntity<Response> pinNote(@RequestHeader String token , @RequestParam long noteId){
 		Response responseStatus = noteService.pinAndUnPin(token, noteId);
 		return new ResponseEntity<Response> (responseStatus,HttpStatus.OK);
 	}
@@ -109,7 +110,7 @@ public class NotesController {
 	 * @return
 	 */
 	@PutMapping("/archive")
-	public ResponseEntity<Response> archiveNote(@RequestParam String token , @RequestParam long noteId){
+	public ResponseEntity<Response> archiveNote(@RequestHeader String token , @RequestParam long noteId){
 		Response responseStatus = noteService.archiveAndUnArchive(token, noteId);
 		return new ResponseEntity<Response> (responseStatus,HttpStatus.OK);
 	}
@@ -121,7 +122,7 @@ public class NotesController {
 	 * @return
 	 */
 	@PutMapping("/trash")
-	public ResponseEntity<Response> trashNote(@RequestParam String token, @RequestParam long noteId){
+	public ResponseEntity<Response> trashNote(@RequestHeader String token, @RequestParam long noteId){
 		Response responseStatus = noteService.trashAndUnTrash(token, noteId);
 		return new ResponseEntity<Response> (responseStatus,HttpStatus.OK);
 	}
@@ -132,7 +133,7 @@ public class NotesController {
 	 * @return
 	 */
 	@DeleteMapping("/delete")
-	public ResponseEntity<Response> deleteNote(@RequestParam String token, @RequestParam long noteId){
+	public ResponseEntity<Response> deleteNote(@RequestHeader String token, @RequestParam long noteId){
 		Response responseStatus = noteService.deletePermanently(token, noteId);
 		return new ResponseEntity<Response> (responseStatus,HttpStatus.OK);
 	}
@@ -143,7 +144,7 @@ public class NotesController {
 	 * @return
 	 */
 	@GetMapping("/getarchivenotes")
-	public List<NotesDto>  getArchiveNotes(@RequestParam String token) {
+	public List<NotesDto>  getArchiveNotes(@RequestHeader String token) {
 		List<NotesDto> listnotes = noteService.getArchiveNotes(token);
 		return listnotes;
 	}
@@ -154,7 +155,7 @@ public class NotesController {
 	 * @return
 	 */
 	@GetMapping("/gettrashnotes")
-	public List<NotesDto>  getTrashNotes(@RequestParam String token) {
+	public List<NotesDto>  getTrashNotes(@RequestHeader String token) {
 		List<NotesDto> listnotes = noteService.getTrashNotes(token);
 		return listnotes;
 	}

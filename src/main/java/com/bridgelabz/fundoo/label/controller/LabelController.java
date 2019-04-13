@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -37,7 +38,7 @@ public class LabelController {
 	 * @return
 	 */
 	@PostMapping("/create")
-	ResponseEntity<Response> createLabel(@RequestBody LabelDto labelDto , @RequestParam String token) {
+	ResponseEntity<Response> createLabel(@RequestBody LabelDto labelDto , @RequestHeader String token) {
 		Response statusResponse = labelService.createLabel(labelDto, token);
 		return new ResponseEntity<Response>(statusResponse,HttpStatus.ACCEPTED);
 	}
@@ -49,7 +50,7 @@ public class LabelController {
 	 * @return
 	 */
 	@DeleteMapping("/delete")
-	ResponseEntity<Response> deleteLabel(@RequestParam String token , @RequestParam long labelId) {
+	ResponseEntity<Response> deleteLabel(@RequestHeader String token , @RequestParam long labelId) {
 		Response statusResponse = labelService.deleteLabel(labelId, token);
 		return new ResponseEntity<Response>(statusResponse,HttpStatus.OK);
 	}
@@ -62,7 +63,7 @@ public class LabelController {
 	 * @return
 	 */
 	@PutMapping("/update")
-	ResponseEntity<Response> updateLabel(@RequestParam String token , @RequestParam long labelId , @RequestBody LabelDto labelDto){
+	ResponseEntity<Response> updateLabel(@RequestHeader String token , @RequestParam long labelId , @RequestBody LabelDto labelDto){
 		Response statusResponse = labelService.updateLabel(labelId, token, labelDto);
 		return new ResponseEntity<Response>(statusResponse,HttpStatus.OK);
 	}
@@ -73,7 +74,7 @@ public class LabelController {
 	 * @return
 	 */
 	@GetMapping("/getlabel")
-	List<LabelDto> getLabel(@RequestParam String token){
+	List<LabelDto> getLabel(@RequestHeader String token){
 		List<LabelDto> listLabel = labelService.getAllLabel(token);
 		return listLabel;
 	}
@@ -86,7 +87,7 @@ public class LabelController {
 	 * @return
 	 */
 	@PutMapping("/addlebeltonote")
-	ResponseEntity<Response> addNoteToLebel(@RequestParam long labelId , @RequestParam String token , @RequestParam long noteId){
+	ResponseEntity<Response> addNoteToLebel(@RequestParam long labelId , @RequestHeader String token , @RequestParam long noteId){
 		Response statusResponse = labelService.addNoteToLabel(labelId, token, noteId);
 		return new ResponseEntity<Response>(statusResponse,HttpStatus.OK);
 	}
@@ -98,7 +99,7 @@ public class LabelController {
 	 * @return
 	 */
 	@GetMapping("/getlebelofnote")
-	List<LabelDto> getLebelOfNote(@RequestParam String token, @RequestParam long noteId){
+	List<LabelDto> getLebelOfNote(@RequestHeader String token, @RequestParam long noteId){
 		List<LabelDto> listLabel = labelService.getLebelsOfNote(token, noteId);
 		return listLabel;
 	}
@@ -111,7 +112,7 @@ public class LabelController {
 	 * @return
 	 */
 	@PutMapping("/removefromnote")
-	ResponseEntity<Response> removeFromNote(@RequestParam String token, @RequestParam long noteId , @RequestParam long labelId){
+	ResponseEntity<Response> removeFromNote(@RequestHeader String token, @RequestParam long noteId , @RequestParam long labelId){
 		Response statusResponse = labelService.removeLabelFromNote(labelId, token, noteId);
 		return new ResponseEntity<Response>(statusResponse,HttpStatus.OK);
 	}
