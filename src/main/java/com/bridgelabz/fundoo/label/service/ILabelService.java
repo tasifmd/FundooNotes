@@ -59,7 +59,7 @@ public interface ILabelService {
 	 * @param noteId
 	 * @return
 	 */
-	public Response addNoteToLabel(long labelId ,String token , long noteId);
+	public Response addLabelToNote(long labelId ,String token , long noteId);
 	
 	
 	/**

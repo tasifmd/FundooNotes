@@ -142,7 +142,7 @@ public class LabelServiceImpl implements ILabelService{
 	 * @see com.bridgelabz.fundoo.label.service.ILabelService#addNoteToLabel(long, java.lang.String, long)
 	 */
 	@Override
-	public Response addNoteToLabel(long labelId, String token , long noteId) {
+	public Response addLabelToNote(long labelId, String token , long noteId) {
 		long userId = userToken.tokenVerify(token);
 		Optional<User> user = userRepository.findById(userId);
 		if(!user.isPresent()) {
