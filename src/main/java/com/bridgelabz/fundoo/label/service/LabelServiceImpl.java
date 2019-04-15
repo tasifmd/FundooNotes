@@ -111,6 +111,13 @@ public class LabelServiceImpl implements ILabelService{
 		if(label == null ) {
 			throw new LabelException("No label exist", -6);
 		}
+		if(labelDto.getLabelName().isEmpty()) {
+			throw new LabelException("Label has no name", -6);
+		}
+		Optional<Label> labelAvailability = labelRepository.findByUserIdAndLabelName(userId, labelDto.getLabelName());
+		if(labelAvailability.isPresent()) {
+			throw new LabelException("Label already exist", -6);
+		}
 		label.setLabelName(labelDto.getLabelName());
 		label.setModifiedDate(LocalDateTime.now());
 		labelRepository.save(label);
