@@ -88,7 +88,7 @@ public class LabelController {
 	 */
 	@PutMapping("/addlebeltonote")
 	ResponseEntity<Response> addNoteToLebel(@RequestParam long labelId , @RequestHeader String token , @RequestParam long noteId){
-		Response statusResponse = labelService.addNoteToLabel(labelId, token, noteId);
+		Response statusResponse = labelService.addLabelToNote(labelId, token, noteId);
 		return new ResponseEntity<Response>(statusResponse,HttpStatus.OK);
 	}
 	
