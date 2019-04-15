@@ -28,7 +28,7 @@ public class SwaggerConfig {
 	}
 	private ApiInfo metaData() {
 		 ApiInfo apiInfo = new ApiInfo("Spring Boot REST API", 
-				 "Spring Boot REST API for Google Keep",
+				 "Spring Boot REST API for FundooNotes",
 				 "1.0", 
 				 "Terms of service",
 				 new Contact("Tasif Mohammed" , "https://github.com/tasifmd/FundooNotes", "tasifmd96@gmail.com"),
