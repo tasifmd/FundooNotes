@@ -1,4 +1,4 @@
-package com.bridgelabz.fundoo.label.service;
+package com.bridgelabz.fundoo.notes.service;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
@@ -12,11 +12,11 @@ import org.springframework.core.env.Environment;
 import org.springframework.stereotype.Service;
 
 import com.bridgelabz.fundoo.exception.LabelException;
-import com.bridgelabz.fundoo.label.dto.LabelDto;
-import com.bridgelabz.fundoo.label.model.Label;
-import com.bridgelabz.fundoo.label.repository.LabelRepository;
+import com.bridgelabz.fundoo.notes.dto.LabelDto;
+import com.bridgelabz.fundoo.notes.model.Label;
 import com.bridgelabz.fundoo.notes.model.Notes;
 import com.bridgelabz.fundoo.notes.repository.INotesRepository;
+import com.bridgelabz.fundoo.notes.repository.LabelRepository;
 import com.bridgelabz.fundoo.response.Response;
 import com.bridgelabz.fundoo.user.model.User;
 import com.bridgelabz.fundoo.user.repository.IUserRepository;

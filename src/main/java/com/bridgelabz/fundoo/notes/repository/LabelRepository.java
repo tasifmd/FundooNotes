@@ -1,4 +1,4 @@
-package com.bridgelabz.fundoo.label.repository;
+package com.bridgelabz.fundoo.notes.repository;
 
 import java.util.List;
 import java.util.Optional;
@@ -6,7 +6,7 @@ import java.util.Optional;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
-import com.bridgelabz.fundoo.label.model.Label;
+import com.bridgelabz.fundoo.notes.model.Label;
 
 /**
  * Purpose : Repository class for Label

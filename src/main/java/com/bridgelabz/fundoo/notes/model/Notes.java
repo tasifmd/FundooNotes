@@ -13,8 +13,6 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
-import com.bridgelabz.fundoo.label.model.Label;
-
 @Entity
 @Table(name = "notes")
 public class Notes implements Serializable{

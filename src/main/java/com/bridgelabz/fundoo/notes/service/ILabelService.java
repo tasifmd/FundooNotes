@@ -1,10 +1,10 @@
-package com.bridgelabz.fundoo.label.service;
+package com.bridgelabz.fundoo.notes.service;
 
 import java.util.List;
 
 import org.springframework.stereotype.Service;
 
-import com.bridgelabz.fundoo.label.dto.LabelDto;
+import com.bridgelabz.fundoo.notes.dto.LabelDto;
 import com.bridgelabz.fundoo.response.Response;
 
 /**

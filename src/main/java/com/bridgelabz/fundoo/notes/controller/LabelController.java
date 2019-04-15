@@ -1,4 +1,4 @@
-package com.bridgelabz.fundoo.label.controller;
+package com.bridgelabz.fundoo.notes.controller;
 
 import java.util.List;
 
@@ -15,8 +15,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.bridgelabz.fundoo.label.dto.LabelDto;
-import com.bridgelabz.fundoo.label.service.ILabelService;
+import com.bridgelabz.fundoo.notes.dto.LabelDto;
+import com.bridgelabz.fundoo.notes.service.ILabelService;
 import com.bridgelabz.fundoo.response.Response;
 
 /**

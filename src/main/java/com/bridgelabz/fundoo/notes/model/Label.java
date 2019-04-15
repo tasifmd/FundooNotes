@@ -1,4 +1,4 @@
-package com.bridgelabz.fundoo.label.model;
+package com.bridgelabz.fundoo.notes.model;
 
 import java.time.LocalDateTime;
 
