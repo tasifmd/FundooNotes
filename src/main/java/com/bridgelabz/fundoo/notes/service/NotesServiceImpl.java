@@ -106,6 +106,7 @@ public class NotesServiceImpl implements INotesService {
 		}
 		if(notes.isTrash() == false) {
 			notes.setTrash(true);
+			notes.setModified(LocalDateTime.now());
 			notesRepository.save(notes);
 			Response response = StatusHelper.statusInfo(environment.getProperty("status.note.trashed"),Integer.parseInt(environment.getProperty("status.success.code")));
 			return response;
@@ -126,6 +127,7 @@ public class NotesServiceImpl implements INotesService {
 			NotesDto notesDto = modelMapper.map(userNotes, NotesDto.class);
 			if(userNotes.isArchive() == false && userNotes.isTrash() == false) {
 				listNotes.add(notesDto);
+				
 			}
 		}
 		return listNotes;
