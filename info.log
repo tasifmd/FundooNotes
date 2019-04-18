@@ -36,3 +36,11 @@
 2019-04-17 11:30:37.441  INFO 12557 --- [http-nio-8080-exec-6] o.h.h.i.QueryTranslatorFactoryInitiator  : HHH000397: Using ASTQueryTranslatorFactory
 2019-04-17 11:30:37.669  INFO 12557 --- [http-nio-8080-exec-6] c.b.f.u.s.UserServicesImplementation     : User Password : $2a$10$3T64z70GuLeWqlnCyrDQNeng.nbphpdCGgkM8AfmMw0DOgWaMkIfe
 2019-04-17 11:31:31.604  INFO 12557 --- [http-nio-8080-exec-3] c.b.f.u.s.UserServicesImplementation     : Password Reset Successfull
+2019-04-17 19:22:51.782  INFO 12557 --- [RMI TCP Connection(496)-127.0.0.1] inMXBeanRegistrar$SpringApplicationAdmin : Application shutdown requested.
+2019-04-17 19:22:52.191  INFO 12557 --- [RMI TCP Connection(496)-127.0.0.1] o.s.a.r.l.SimpleMessageListenerContainer : Waiting for workers to finish.
+2019-04-17 19:22:52.861  INFO 12557 --- [RMI TCP Connection(496)-127.0.0.1] o.s.a.r.l.SimpleMessageListenerContainer : Successfully waited for workers to finish.
+2019-04-17 19:22:52.886  INFO 12557 --- [RMI TCP Connection(496)-127.0.0.1] o.s.a.r.l.SimpleMessageListenerContainer : Shutdown ignored - container is not active already
+2019-04-17 19:22:52.887  INFO 12557 --- [RMI TCP Connection(496)-127.0.0.1] o.s.s.concurrent.ThreadPoolTaskExecutor  : Shutting down ExecutorService 'applicationTaskExecutor'
+2019-04-17 19:22:53.361  INFO 12557 --- [RMI TCP Connection(496)-127.0.0.1] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2019-04-17 19:22:53.507  INFO 12557 --- [RMI TCP Connection(496)-127.0.0.1] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2019-04-17 19:22:53.594  INFO 12557 --- [RMI TCP Connection(496)-127.0.0.1] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
