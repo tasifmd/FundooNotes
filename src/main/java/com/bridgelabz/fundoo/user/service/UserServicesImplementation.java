@@ -121,7 +121,6 @@ public class UserServicesImplementation implements IUserServices {
 		//getting user record by email
 		java.util.Optional<User> user = userRepository.findByEmail(loginDto.getEmail());
 		log.info("User Password : " + user.get().getPassword());
-		
 		//Checking whether user is registered
 		if(user.isPresent()) {
 			
@@ -230,9 +229,11 @@ public class UserServicesImplementation implements IUserServices {
 		if(passwordEncoder.matches(passwordDto.getOldPassword(), user.get().getPassword())) {
 			user.get().setPassword(passwordEncoder.encode(passwordDto.getNewPassword()));
 			userRepository.save(user.get());
-			log.info("Password Reset Successfull");
+			log.info("Password Reset Successfully");
+			response = StatusHelper.statusInfo(environment.getProperty("status.resetPassword.success"),Integer.parseInt(environment.getProperty("status.success.code")));
+			return response;
 		}
-		response = StatusHelper.statusInfo(environment.getProperty("status.resetPassword.success"),Integer.parseInt(environment.getProperty("status.success.code")));
+		response = StatusHelper.statusInfo(environment.getProperty("status.passreset.failed"),Integer.parseInt(environment.getProperty("status.login.errorCode")));
 		return response;
 	}
 	
