@@ -191,7 +191,7 @@ public class UserServicesImplementation implements IUserServices {
 		emailObj.setTo(email);
 		emailObj.setSubject("Forgot Password ");
 		try {
-			emailObj.setBody( mailServise.getLink("http://192.168.0.198:8080/user/forgotpassword/",user.get().getUserId()));
+			emailObj.setBody( mailServise.getLink("http://192.168.0.198:4200/user/forgotpassword/",user.get().getUserId()));
 		} catch (IllegalArgumentException | UnsupportedEncodingException e1) {
 			e1.printStackTrace();
 		}

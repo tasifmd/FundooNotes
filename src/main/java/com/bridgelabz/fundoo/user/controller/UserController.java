@@ -99,7 +99,7 @@ public class UserController {
 	 * @return
 	 */
 	@PostMapping("/forgotpassword")
-	public ResponseEntity<Response> forgotPassword(@RequestParam String email){
+	public ResponseEntity<Response> forgotPassword(@RequestBody String email){
 		logger.info("User email : " + email);
 		Response statusResponse = userServices.forgotPassword(email);
 		return new ResponseEntity<Response> (statusResponse, HttpStatus.OK);
