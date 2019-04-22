@@ -15,7 +15,7 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "notes")
-public class Notes implements Serializable{
+public class Note implements Serializable{
 
 	private static final long serialVersionUID = 1L;
 
@@ -51,7 +51,7 @@ public class Notes implements Serializable{
 	@OneToMany(cascade = CascadeType.ALL)
 	private List<Label> listLabel;
 	
-	public Notes() {
+	public Note() {
 		super();
 	}
 	public long getId() {

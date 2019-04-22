@@ -15,7 +15,7 @@ import org.springframework.stereotype.Service;
 
 import com.bridgelabz.fundoo.exception.NotesException;
 import com.bridgelabz.fundoo.notes.dto.NotesDto;
-import com.bridgelabz.fundoo.notes.model.Notes;
+import com.bridgelabz.fundoo.notes.model.Note;
 import com.bridgelabz.fundoo.notes.repository.INotesRepository;
 import com.bridgelabz.fundoo.response.Response;
 import com.bridgelabz.fundoo.user.model.User;
@@ -63,7 +63,7 @@ public class NotesServiceImpl implements INotesService {
 			throw new NotesException("Title and description are empty", -5);
 
 		}
-		Notes notes = modelMapper.map(notesDto, Notes.class);
+		Note notes = modelMapper.map(notesDto, Note.class);
 		Optional<User> user = userRepository.findById(id);
 		notes.setUserId(id);
 		notes.setCreated(LocalDateTime.now());
@@ -85,7 +85,7 @@ public class NotesServiceImpl implements INotesService {
 		}
 		
 		long id = userToken.tokenVerify(token);
-		Notes notes = notesRepository.findByIdAndUserId(noteId, id);
+		Note notes = notesRepository.findByIdAndUserId(noteId, id);
 		notes.setTitle(notesDto.getTitle());
 		notes.setDescription(notesDto.getDescription());
 		notes.setModified(LocalDateTime.now());
@@ -100,7 +100,7 @@ public class NotesServiceImpl implements INotesService {
 	@Override
 	public Response delete(String token, long noteId) {
 		long id = userToken.tokenVerify(token);
-		Notes notes = notesRepository.findByIdAndUserId(noteId, id);
+		Note notes = notesRepository.findByIdAndUserId(noteId, id);
 		if(notes == null) {
 			throw new NotesException("Invalid input", -5);
 		}
@@ -121,9 +121,9 @@ public class NotesServiceImpl implements INotesService {
 	@Override
 	public List<NotesDto> getAllNotes(String token) {
 		long id = userToken.tokenVerify(token);
-		List<Notes> notes = (List<Notes>) notesRepository.findByUserId(id);
+		List<Note> notes = (List<Note>) notesRepository.findByUserId(id);
 		List<NotesDto> listNotes = new ArrayList<>();
-		for(Notes userNotes : notes) {
+		for(Note userNotes : notes) {
 			NotesDto notesDto = modelMapper.map(userNotes, NotesDto.class);
 			if(userNotes.isArchive() == false && userNotes.isTrash() == false) {
 				listNotes.add(notesDto);
@@ -139,7 +139,7 @@ public class NotesServiceImpl implements INotesService {
 	@Override
 	public Response pinAndUnPin(String token, long noteId) {
 		long id = userToken.tokenVerify(token);
-		Notes notes = notesRepository.findByIdAndUserId(noteId, id);
+		Note notes = notesRepository.findByIdAndUserId(noteId, id);
 		if(notes == null) {
 			throw new NotesException("Invalid input", -5);
 		}
@@ -163,7 +163,7 @@ public class NotesServiceImpl implements INotesService {
 	@Override
 	public Response archiveAndUnArchive(String token, long noteId) {
 		long id = userToken.tokenVerify(token);
-		Notes notes = notesRepository.findByIdAndUserId(noteId, id);
+		Note notes = notesRepository.findByIdAndUserId(noteId, id);
 		if(notes == null) {
 			throw new NotesException("Invalid input", -5);
 		}
@@ -187,7 +187,7 @@ public class NotesServiceImpl implements INotesService {
 	@Override
 	public Response trashAndUnTrash(String token, long noteId) {
 		long id = userToken.tokenVerify(token);
-		Notes notes = notesRepository.findByIdAndUserId(noteId, id);
+		Note notes = notesRepository.findByIdAndUserId(noteId, id);
 		if(notes.isTrash() == false) {
 			notes.setTrash(true);
 			notesRepository.save(notes);
@@ -208,7 +208,7 @@ public class NotesServiceImpl implements INotesService {
 	@Override
 	public Response deletePermanently(String token, long noteId) {
 		long id = userToken.tokenVerify(token);
-		Notes notes = notesRepository.findByIdAndUserId(noteId, id);
+		Note notes = notesRepository.findByIdAndUserId(noteId, id);
 		if(notes.isTrash() == true) {
 			notesRepository.delete(notes);
 			Response response = StatusHelper.statusInfo(environment.getProperty("status.note.deleted"),Integer.parseInt(environment.getProperty("status.success.code")));
@@ -225,9 +225,9 @@ public class NotesServiceImpl implements INotesService {
 	@Override
 	public List<NotesDto> getArchiveNotes(String token) {
 		long id = userToken.tokenVerify(token);
-		List<Notes> notes = (List<Notes>) notesRepository.findByUserId(id);
+		List<Note> notes = (List<Note>) notesRepository.findByUserId(id);
 		List<NotesDto> listNotes = new ArrayList<>();
-		for(Notes userNotes : notes) {
+		for(Note userNotes : notes) {
 			NotesDto notesDto = modelMapper.map(userNotes, NotesDto.class);
 			if(userNotes.isArchive() == true) {
 				listNotes.add(notesDto);
@@ -242,9 +242,9 @@ public class NotesServiceImpl implements INotesService {
 	@Override
 	public List<NotesDto> getTrashNotes(String token) {
 		long id = userToken.tokenVerify(token);
-		List<Notes> notes = (List<Notes>) notesRepository.findByUserId(id);
+		List<Note> notes = (List<Note>) notesRepository.findByUserId(id);
 		List<NotesDto> listNotes = new ArrayList<>();
-		for(Notes userNotes : notes) {
+		for(Note userNotes : notes) {
 			NotesDto notesDto = modelMapper.map(userNotes, NotesDto.class);
 			if(userNotes.isTrash() == true) {
 				listNotes.add(notesDto);

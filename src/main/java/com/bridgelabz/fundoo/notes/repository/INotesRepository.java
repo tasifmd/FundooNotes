@@ -5,7 +5,7 @@ import java.util.List;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
-import com.bridgelabz.fundoo.notes.model.Notes;
+import com.bridgelabz.fundoo.notes.model.Note;
 
 /**
  * Purpose : Note repositiry for notes
@@ -13,18 +13,18 @@ import com.bridgelabz.fundoo.notes.model.Notes;
  *
  */
 @Repository
-public interface INotesRepository extends JpaRepository<Notes, Long>{
+public interface INotesRepository extends JpaRepository<Note, Long>{
 	/**
 	 * Purpose : Get note by userid and noteid
 	 * @param id
 	 * @param userId
 	 * @return
 	 */
-	public Notes findByIdAndUserId(long id , long userId);
+	public Note findByIdAndUserId(long id , long userId);
 	/**
 	 * Purpose : Get list of notes of user
 	 * @param id
 	 * @return
 	 */
-	public List<Notes> findByUserId(long id);
+	public List<Note> findByUserId(long id);
 }

@@ -29,7 +29,7 @@ import com.bridgelabz.fundoo.response.Response;
 public class LabelController {
 	
 	@Autowired
-	ILabelService labelService;
+	private ILabelService labelService;
 	
 	/**
 	 * Purpose : Function to create label

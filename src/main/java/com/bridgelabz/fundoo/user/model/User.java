@@ -17,7 +17,7 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 
 import com.bridgelabz.fundoo.notes.model.Label;
-import com.bridgelabz.fundoo.notes.model.Notes;
+import com.bridgelabz.fundoo.notes.model.Note;
 
 
 /**
@@ -66,7 +66,7 @@ public class User{
 	private LocalDate updatedDate;
 
 	@OneToMany(cascade = CascadeType.ALL)
-	private List<Notes> notes;
+	private List<Note> notes;
 	
 	@OneToMany(cascade = CascadeType.ALL)
 	private List<Label> label;
@@ -139,11 +139,11 @@ public class User{
 		this.updatedDate = updatedDate;
 	}
 
-	public List<Notes> getNotes() {
+	public List<Note> getNotes() {
 		return notes;
 	}
 
-	public void setNotes(List<Notes> notes) {
+	public void setNotes(List<Note> notes) {
 		this.notes = notes;
 	}
 

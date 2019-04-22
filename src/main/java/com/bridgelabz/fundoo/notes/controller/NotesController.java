@@ -38,7 +38,7 @@ public class NotesController {
 	Logger logger = LoggerFactory.getLogger(NotesController.class);
 	
 	@Autowired
-	INotesService noteService;
+	private INotesService noteService;
 	
 	/**
 	 * Purpose : Function for creating notes

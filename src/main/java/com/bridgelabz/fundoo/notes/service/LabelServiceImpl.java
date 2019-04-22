@@ -14,7 +14,7 @@ import org.springframework.stereotype.Service;
 import com.bridgelabz.fundoo.exception.LabelException;
 import com.bridgelabz.fundoo.notes.dto.LabelDto;
 import com.bridgelabz.fundoo.notes.model.Label;
-import com.bridgelabz.fundoo.notes.model.Notes;
+import com.bridgelabz.fundoo.notes.model.Note;
 import com.bridgelabz.fundoo.notes.repository.INotesRepository;
 import com.bridgelabz.fundoo.notes.repository.LabelRepository;
 import com.bridgelabz.fundoo.response.Response;
@@ -29,22 +29,22 @@ import com.bridgelabz.fundoo.util.UserToken;
 public class LabelServiceImpl implements ILabelService{
 
 	@Autowired
-	ModelMapper modelMapper;
+	private ModelMapper modelMapper;
 	
 	@Autowired
-	LabelRepository labelRepository;
+	private LabelRepository labelRepository;
 	
 	@Autowired
-	IUserRepository userRepository;
+	private IUserRepository userRepository;
 	
 	@Autowired
-	INotesRepository notesRepository;
+	private INotesRepository notesRepository;
 	
 	@Autowired
-	UserToken userToken;
+	private UserToken userToken;
 	
 	@Autowired
-	Environment environment;
+	private Environment environment;
 	
 	/* (non-Javadoc)
 	 * @see com.bridgelabz.fundoo.label.service.ILabelService#createLabel(com.bridgelabz.fundoo.label.dto.LabelDto, java.lang.String)
@@ -159,7 +159,7 @@ public class LabelServiceImpl implements ILabelService{
 		if(label == null) {
 			throw new LabelException("No such lebel exist", -6);
 		}
-		Notes note =  notesRepository.findByIdAndUserId(noteId, userId);
+		Note note =  notesRepository.findByIdAndUserId(noteId, userId);
 		if(note == null) {
 			throw new LabelException("No such note exist", -6);
 		}
@@ -210,7 +210,7 @@ public class LabelServiceImpl implements ILabelService{
 		if(label == null) {
 			throw new LabelException("No such lebel exist", -6);
 		}
-		Notes note =  notesRepository.findByIdAndUserId(noteId, userId);
+		Note note =  notesRepository.findByIdAndUserId(noteId, userId);
 		if(note == null) {
 			throw new LabelException("No such note exist", -6);
 		}
