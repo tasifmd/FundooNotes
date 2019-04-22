@@ -60,7 +60,7 @@ public class ExceptionHandler {
 	 * @return
 	 */
 	@org.springframework.web.bind.annotation.ExceptionHandler(value = RegistrationException.class)
-	public ResponseEntity<Response> registrationExceptionHandler(NotesException e){
+	public ResponseEntity<Response> registrationExceptionHandler(RegistrationException e){
 		Response response = StatusHelper.statusInfo(e.getMessage(), e.getErrorCode());
 		return new ResponseEntity<Response> (response , HttpStatus.OK);
 	}
@@ -71,7 +71,7 @@ public class ExceptionHandler {
 	 * @return
 	 */
 	@org.springframework.web.bind.annotation.ExceptionHandler(value = TokenException.class)
-	public ResponseEntity<Response> tokenExceptionHandler(NotesException e){
+	public ResponseEntity<Response> tokenExceptionHandler(TokenException e){
 		Response response = StatusHelper.statusInfo(e.getMessage(), e.getErrorCode());
 		return new ResponseEntity<Response> (response , HttpStatus.OK);
 	}

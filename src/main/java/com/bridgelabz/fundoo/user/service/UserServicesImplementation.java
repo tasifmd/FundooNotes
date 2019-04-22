@@ -101,7 +101,7 @@ public class UserServicesImplementation implements IUserServices {
 		email.setTo(userDTO.getEmail());
 		email.setSubject("Email Verification ");
 		try {
-			email.setBody( mailServise.getLink("http://192.168.0.198:8080/user/emailvalidation/",user.getUserId()));
+			email.setBody( mailServise.getLink("http://localhost:8080/user/emailvalidation/",user.getUserId()));
 		} catch (IllegalArgumentException | UnsupportedEncodingException e1) {
 			e1.printStackTrace();
 		}
@@ -191,7 +191,7 @@ public class UserServicesImplementation implements IUserServices {
 		emailObj.setTo(email);
 		emailObj.setSubject("Forgot Password ");
 		try {
-			emailObj.setBody( mailServise.getLink("http://192.168.0.198:4200/user/forgotpassword/",user.get().getUserId()));
+			emailObj.setBody( mailServise.getLink("http://localhost:4200/user/resetpassword/",user.get().getUserId()));
 		} catch (IllegalArgumentException | UnsupportedEncodingException e1) {
 			e1.printStackTrace();
 		}
@@ -226,13 +226,20 @@ public class UserServicesImplementation implements IUserServices {
 		Response response = null;
 		long id = userToken.tokenVerify(token);
 		Optional<User> user = userRepository.findById(id);
-		if(passwordEncoder.matches(passwordDto.getOldPassword(), user.get().getPassword())) {
+		if(passwordDto.getNewPassword().equals(passwordDto.getConfirmPassword())) {
 			user.get().setPassword(passwordEncoder.encode(passwordDto.getNewPassword()));
 			userRepository.save(user.get());
 			log.info("Password Reset Successfully");
 			response = StatusHelper.statusInfo(environment.getProperty("status.resetPassword.success"),Integer.parseInt(environment.getProperty("status.success.code")));
 			return response;
 		}
+//		if(passwordEncoder.matches(passwordDto.getOldPassword(), user.get().getPassword())) {
+//			user.get().setPassword(passwordEncoder.encode(passwordDto.getNewPassword()));
+//			userRepository.save(user.get());
+//			log.info("Password Reset Successfully");
+//			response = StatusHelper.statusInfo(environment.getProperty("status.resetPassword.success"),Integer.parseInt(environment.getProperty("status.success.code")));
+//			return response;
+//		}
 		response = StatusHelper.statusInfo(environment.getProperty("status.passreset.failed"),Integer.parseInt(environment.getProperty("status.login.errorCode")));
 		return response;
 	}
