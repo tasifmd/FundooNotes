@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.bridgelabz.fundoo.notes.dto.LabelDto;
+import com.bridgelabz.fundoo.notes.dto.NotesDto;
 import com.bridgelabz.fundoo.notes.service.ILabelService;
 import com.bridgelabz.fundoo.response.Response;
 
@@ -115,5 +116,11 @@ public class LabelController {
 	ResponseEntity<Response> removeFromNote(@RequestHeader String token, @RequestParam long noteId , @RequestParam long labelId){
 		Response statusResponse = labelService.removeLabelFromNote(labelId, token, noteId);
 		return new ResponseEntity<Response>(statusResponse,HttpStatus.OK);
+	}
+	
+	@GetMapping("/getnotesoflabel")
+	List<NotesDto> getNotesOfLabel(@RequestHeader String token , @RequestParam long labelId){
+		List<NotesDto> listNotes = labelService.getNotesOfLabel(token, labelId);
+		return listNotes;
 	}
 }

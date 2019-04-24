@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
+import com.bridgelabz.fundoo.notes.model.Label;
 import com.bridgelabz.fundoo.notes.model.Note;
 
 /**
@@ -27,4 +28,6 @@ public interface INotesRepository extends JpaRepository<Note, Long>{
 	 * @return
 	 */
 	public List<Note> findByUserId(long id);
+	
+	public List<Label> findAllListLabelById(long id);
 }

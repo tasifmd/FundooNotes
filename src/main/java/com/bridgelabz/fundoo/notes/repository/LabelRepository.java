@@ -4,9 +4,12 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 import com.bridgelabz.fundoo.notes.model.Label;
+import com.bridgelabz.fundoo.notes.model.Note;
 
 /**
  * Purpose : Repository class for Label
@@ -44,5 +47,8 @@ public interface LabelRepository extends JpaRepository<Label, Long> {
 	 * @param noteId
 	 * @return
 	 */
-	public List<Label> findAllLabelsByNoteId(long noteId);
+	@Query(value = "SELECT * from notes_list_label where note_note_id=:noteId" , nativeQuery=true)
+	public List<Label> findAllLabelsByNotes(@Param("noteId")long notes);
+	
+	public List<Note> findAllNotesByLabelId(long labelId);
 }

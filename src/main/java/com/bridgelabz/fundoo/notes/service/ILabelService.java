@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.stereotype.Service;
 
 import com.bridgelabz.fundoo.notes.dto.LabelDto;
+import com.bridgelabz.fundoo.notes.dto.NotesDto;
 import com.bridgelabz.fundoo.response.Response;
 
 /**
@@ -79,4 +80,6 @@ public interface ILabelService {
 	 * @return
 	 */
 	public Response removeLabelFromNote(long labelId ,String token , long noteId);
+	
+	public List<NotesDto> getNotesOfLabel(String token , long labelId );
 }

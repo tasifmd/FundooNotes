@@ -10,7 +10,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
+import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -48,79 +48,103 @@ public class Note implements Serializable{
 	@Column(name = "modified")
 	private LocalDateTime modified;
 	
-	@OneToMany(cascade = CascadeType.ALL)
+	@ManyToMany(cascade = CascadeType.ALL)
 	private List<Label> listLabel;
 	
 	public Note() {
 		super();
 	}
+
 	public long getId() {
 		return id;
 	}
+
 	public void setId(long id) {
 		this.id = id;
 	}
-	public String getTitle() {
-		return title;
-	}
-	public void setTitle(String title) {
-		this.title = title;
-	}
-	public String getDescription() {
-		return description;
-	}
-	public void setDescription(String description) {
-		this.description = description;
-	}
-	public boolean isPin() {
-		return isPin;
-	}
-	public void setPin(boolean isPin) {
-		this.isPin = isPin;
-	}
-	public boolean isArchive() {
-		return isArchive;
-	}
-	public void setArchive(boolean isArchive) {
-		this.isArchive = isArchive;
-	}
-	public boolean isTrash() {
-		return isTrash;
-	}
-	public void setTrash(boolean isTrash) {
-		this.isTrash = isTrash;
-	}
-	public LocalDateTime getCreated() {
-		return created;
-	}
-	public void setCreated(LocalDateTime created) {
-		this.created = created;
-	}
-	public LocalDateTime getModified() {
-		return modified;
-	}
-	public void setModified(LocalDateTime modified) {
-		this.modified = modified;
-	}
+
 	public long getUserId() {
 		return userId;
 	}
+
 	public void setUserId(long userId) {
 		this.userId = userId;
 	}
+
+	public String getTitle() {
+		return title;
+	}
+
+	public void setTitle(String title) {
+		this.title = title;
+	}
+
+	public String getDescription() {
+		return description;
+	}
+
+	public void setDescription(String description) {
+		this.description = description;
+	}
+
+	public boolean isPin() {
+		return isPin;
+	}
+
+	public void setPin(boolean isPin) {
+		this.isPin = isPin;
+	}
+
+	public boolean isArchive() {
+		return isArchive;
+	}
+
+	public void setArchive(boolean isArchive) {
+		this.isArchive = isArchive;
+	}
+
+	public boolean isTrash() {
+		return isTrash;
+	}
+
+	public void setTrash(boolean isTrash) {
+		this.isTrash = isTrash;
+	}
+
+	public LocalDateTime getCreated() {
+		return created;
+	}
+
+	public void setCreated(LocalDateTime created) {
+		this.created = created;
+	}
+
+	public LocalDateTime getModified() {
+		return modified;
+	}
+
+	public void setModified(LocalDateTime modified) {
+		this.modified = modified;
+	}
+
 	public List<Label> getListLabel() {
 		return listLabel;
 	}
+
 	public void setListLabel(List<Label> listLabel) {
 		this.listLabel = listLabel;
 	}
+
+	public static long getSerialversionuid() {
+		return serialVersionUID;
+	}
+
 	@Override
 	public String toString() {
-		return "Notes [id=" + id + ", userId=" + userId + ", title=" + title + ", description=" + description
+		return "Note [id=" + id + ", userId=" + userId + ", title=" + title + ", description=" + description
 				+ ", isPin=" + isPin + ", isArchive=" + isArchive + ", isTrash=" + isTrash + ", created=" + created
 				+ ", modified=" + modified + ", listLabel=" + listLabel + "]";
 	}
-	
 	
 	
 }
