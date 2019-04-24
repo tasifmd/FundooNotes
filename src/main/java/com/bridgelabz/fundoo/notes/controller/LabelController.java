@@ -118,6 +118,12 @@ public class LabelController {
 		return new ResponseEntity<Response>(statusResponse,HttpStatus.OK);
 	}
 	
+	/**
+	 * Purpose : Function to get notes of label
+	 * @param token
+	 * @param labelId
+	 * @return
+	 */
 	@GetMapping("/getnotesoflabel")
 	List<NotesDto> getNotesOfLabel(@RequestHeader String token , @RequestParam long labelId){
 		List<NotesDto> listNotes = labelService.getNotesOfLabel(token, labelId);

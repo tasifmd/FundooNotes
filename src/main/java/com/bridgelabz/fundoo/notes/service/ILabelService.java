@@ -81,5 +81,11 @@ public interface ILabelService {
 	 */
 	public Response removeLabelFromNote(long labelId ,String token , long noteId);
 	
+	/**
+	 * Purpose : Function to get notes of label
+	 * @param token
+	 * @param labelId
+	 * @return
+	 */
 	public List<NotesDto> getNotesOfLabel(String token , long labelId );
 }
