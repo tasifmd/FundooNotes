@@ -230,6 +230,9 @@ public class LabelServiceImpl implements ILabelService{
 		
 	}
 	
+	/* (non-Javadoc)
+	 * @see com.bridgelabz.fundoo.notes.service.ILabelService#getNotesOfLabel(java.lang.String, long)
+	 */
 	@Override
 	public List<NotesDto> getNotesOfLabel(String token, long labelId) {
 		long userId = userToken.tokenVerify(token);

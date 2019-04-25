@@ -26,7 +26,7 @@ import com.bridgelabz.fundoo.response.Response;
  *
  */
 @RestController
-@RequestMapping("/user/note/label")
+@RequestMapping("/user/label")
 public class LabelController {
 	
 	@Autowired
