@@ -21,7 +21,7 @@ public interface INotesService {
 	 * @param token
 	 * @return
 	 */
-	public Response createNote(NotesDto notesDto , String token);
+	public Response createNote(NotesDto notesDto ,String token);
 	/**
 	 * Purpose : Function for updating notes
 	 * @param notesDto

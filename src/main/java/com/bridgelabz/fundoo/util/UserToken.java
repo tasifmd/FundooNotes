@@ -11,6 +11,7 @@ import com.auth0.jwt.algorithms.Algorithm;
 import com.auth0.jwt.interfaces.Claim;
 import com.auth0.jwt.interfaces.DecodedJWT;
 import com.auth0.jwt.interfaces.Verification;
+import com.bridgelabz.fundoo.exception.TokenException;
 
 @Component
 @PropertySource("classpath:message.properties")
@@ -43,7 +44,7 @@ public class UserToken {
 		try {
 			verification = JWT.require(Algorithm.HMAC256(UserToken.TOKEN));
 		} catch (IllegalArgumentException | UnsupportedEncodingException e) {
-			e.printStackTrace();
+			throw new TokenException("Invalid Token", -1);
 		}
 		
 		JWTVerifier jwtverifier=verification.build();
