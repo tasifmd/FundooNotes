@@ -530,3 +530,5 @@ java.lang.NullPointerException: null
 2019-04-30 16:50:04.617  INFO 6228 --- [http-nio-8080-exec-5] c.b.f.user.controller.UserController     : LoginDTO data LoginDto [email=tasifmd96@gmail.com, password=tasifmd]
 2019-04-30 16:50:04.867  INFO 6228 --- [http-nio-8080-exec-5] o.h.h.i.QueryTranslatorFactoryInitiator  : HHH000397: Using ASTQueryTranslatorFactory
 2019-04-30 16:50:05.041  INFO 6228 --- [http-nio-8080-exec-5] c.b.f.u.s.UserServicesImplementation     : User Password : $2a$10$Om7ELHCNAXzrikmBXWqgZuLvuK.kpwm5X9y2RzRGQ6txIIEX9bzxq
+2019-04-30 18:30:34.042  INFO 6228 --- [http-nio-8080-exec-8] c.b.f.user.controller.UserController     : LoginDTO data LoginDto [email=tasifmd96@gmail.com, password=tasifmd]
+2019-04-30 18:30:34.084  INFO 6228 --- [http-nio-8080-exec-8] c.b.f.u.s.UserServicesImplementation     : User Password : $2a$10$Om7ELHCNAXzrikmBXWqgZuLvuK.kpwm5X9y2RzRGQ6txIIEX9bzxq
