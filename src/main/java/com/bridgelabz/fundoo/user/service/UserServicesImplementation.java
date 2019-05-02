@@ -143,10 +143,11 @@ public class UserServicesImplementation implements IUserServices {
 		
 	}
 
+
+	
 	/* (non-Javadoc)
 	 * @see com.bridgelabz.fundoo.user.service.IUserServices#validateEmail(java.lang.String)
 	 */
-	
 	@Override
 	public Response validateEmail(String token) {
 		Response response = null;
