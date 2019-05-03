@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -28,7 +29,7 @@ import com.bridgelabz.fundoo.response.Response;
  *
  */
 @RestController
-
+@CrossOrigin(allowedHeaders = "*" ,origins = "*")
 @RequestMapping("/user/note")
 
 //annotation for set environment file 
@@ -47,7 +48,7 @@ public class NotesController {
 	 * @return
 	 */
 	@PostMapping("/create")
-	public ResponseEntity<Response> creatingNote(@RequestBody NotesDto notesDto , @RequestHeader String token){
+	public ResponseEntity<Response> creatingNote(@RequestBody NotesDto notesDto , @RequestHeader("token") String token){
 		logger.info(notesDto.toString());
 		Response responseStatus = noteService.createNote(notesDto, token);
 		return new ResponseEntity<Response>(responseStatus,HttpStatus.OK);
