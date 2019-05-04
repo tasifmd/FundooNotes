@@ -37,7 +37,7 @@ import com.bridgelabz.fundoo.util.UserToken;
 @PropertySource("classpath:message.properties")
 public class UserServicesImplementation implements IUserServices {
 
-	static final Logger log = LoggerFactory.getLogger(UserServicesImplementation.class);
+	private static final Logger log = LoggerFactory.getLogger(UserServicesImplementation.class);
 	
 	@Autowired
 	private Environment environment;
