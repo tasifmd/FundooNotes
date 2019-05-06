@@ -2,17 +2,15 @@ package com.bridgelabz.fundoo.config;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
-import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
+import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
 
 import com.bridgelabz.fundoo.interceptor.FundooInterceptor;
 
-public class InterceptorConfig implements WebMvcConfigurer{
+public class InterceptorConfig extends WebMvcConfigurerAdapter {
 	@Autowired
-	FundooInterceptor fundooIntercepto;
-
-	@Override
+	FundooInterceptor fundooInterceptor;
 	public void addInterceptors(InterceptorRegistry registry) {
-		registry.addInterceptor(fundooIntercepto);
+		registry.addInterceptor(fundooInterceptor);
 	}
-	
 }
+	

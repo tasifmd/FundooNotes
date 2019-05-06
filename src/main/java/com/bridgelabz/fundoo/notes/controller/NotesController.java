@@ -2,6 +2,8 @@ package com.bridgelabz.fundoo.notes.controller;
 
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -48,7 +50,7 @@ public class NotesController {
 	 * @return
 	 */
 	@PostMapping("/create")
-	public ResponseEntity<Response> creatingNote(@RequestBody NotesDto notesDto , @RequestHeader("token") String token){
+	public ResponseEntity<Response> creatingNote(HttpServletRequest request , @RequestBody NotesDto notesDto , @RequestHeader("token") String token){
 		logger.info(notesDto.toString());
 		Response responseStatus = noteService.createNote(notesDto, token);
 		return new ResponseEntity<Response>(responseStatus,HttpStatus.OK);

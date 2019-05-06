@@ -7,13 +7,12 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
-import org.springframework.web.servlet.HandlerInterceptor;
-import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
 
 import com.bridgelabz.fundoo.util.UserToken;
 
 @Component
-public class FundooInterceptor implements HandlerInterceptor{
+public class FundooInterceptor extends HandlerInterceptorAdapter{
 	
 	@Autowired
 	private UserToken userToken;
@@ -22,25 +21,14 @@ public class FundooInterceptor implements HandlerInterceptor{
 	@Override
 	public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler)
 			throws Exception {
+		System.out.println("Prehandler");
 		logger.info("Pre Handler");
 		String token = request.getHeader("token");
 		long id = userToken.tokenVerify(token);
 		request.setAttribute("userId",id);
-		return HandlerInterceptor.super.preHandle(request, response, handler);
+		return true;
 	}
 
-	@Override
-	public void postHandle(HttpServletRequest request, HttpServletResponse response, Object handler,
-			ModelAndView modelAndView) throws Exception {
-		// TODO Auto-generated method stub
-		HandlerInterceptor.super.postHandle(request, response, handler, modelAndView);
-	}
 
-	@Override
-	public void afterCompletion(HttpServletRequest request, HttpServletResponse response, Object handler, Exception ex)
-			throws Exception {
-		// TODO Auto-generated method stub
-		HandlerInterceptor.super.afterCompletion(request, response, handler, ex);
-	}
 	
 }
