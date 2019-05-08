@@ -22,6 +22,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.bridgelabz.fundoo.notes.dto.NotesDto;
+import com.bridgelabz.fundoo.notes.model.Note;
 import com.bridgelabz.fundoo.notes.service.INotesService;
 import com.bridgelabz.fundoo.response.Response;
 
@@ -89,8 +90,8 @@ public class NotesController {
 	 * @return
 	 */
 	@GetMapping("/getallnotes")
-	public List<NotesDto>  getAllNotes(@RequestHeader String token) {
-		List<NotesDto> listnotes = noteService.getAllNotes(token);
+	public List<Note>  getAllNotes(@RequestHeader String token) {
+		List<Note> listnotes = noteService.getAllNotes(token);
 		return listnotes;
 	}
 	

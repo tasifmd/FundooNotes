@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.stereotype.Service;
 
 import com.bridgelabz.fundoo.notes.dto.NotesDto;
+import com.bridgelabz.fundoo.notes.model.Note;
 import com.bridgelabz.fundoo.response.Response;
 
 /**
@@ -42,7 +43,7 @@ public interface INotesService {
 	 * @param token
 	 * @return
 	 */
-	public List<NotesDto>  getAllNotes(String token);
+	public List<Note>  getAllNotes(String token);
 	/**
 	 * Purpose : Function to pin or unpin notes 
 	 * @param token

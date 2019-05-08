@@ -119,14 +119,14 @@ public class NotesServiceImpl implements INotesService {
 	 * @see com.bridgelabz.fundoo.notes.service.INotesService#getAllNotes(java.lang.String)
 	 */
 	@Override
-	public List<NotesDto> getAllNotes(String token) {
+	public List<Note> getAllNotes(String token) {
 		long id = userToken.tokenVerify(token);
 		List<Note> notes = (List<Note>) notesRepository.findByUserId(id);
-		List<NotesDto> listNotes = new ArrayList<>();
+		List<Note> listNotes = new ArrayList<>();
 		for(Note userNotes : notes) {
-			NotesDto notesDto = modelMapper.map(userNotes, NotesDto.class);
+			//NotesDto notesDto = modelMapper.map(userNotes, NotesDto.class);
 			if(userNotes.isArchive() == false && userNotes.isTrash() == false) {
-				listNotes.add(notesDto);
+				listNotes.add(userNotes);
 				
 			}
 		}
