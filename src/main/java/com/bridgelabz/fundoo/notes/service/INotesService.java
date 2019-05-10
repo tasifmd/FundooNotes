@@ -77,11 +77,13 @@ public interface INotesService {
 	 * @param token
 	 * @return
 	 */
-	public List<NotesDto> getArchiveNotes(String token);
+	public List<Note> getArchiveNotes(String token);
 	/**
 	 * Purpose : Function to get all trash notes 
 	 * @param token
 	 * @return
 	 */
-	public List<NotesDto> getTrashNotes(String token);
+	public List<Note> getTrashNotes(String token);
+	
+	public List<Note> getPinnedNotes(String token);
 }

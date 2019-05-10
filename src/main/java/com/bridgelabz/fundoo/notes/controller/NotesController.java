@@ -148,8 +148,8 @@ public class NotesController {
 	 * @return
 	 */
 	@GetMapping("/getarchivenotes")
-	public List<NotesDto>  getArchiveNotes(@RequestHeader String token) {
-		List<NotesDto> listnotes = noteService.getArchiveNotes(token);
+	public List<Note>  getArchiveNotes(@RequestHeader String token) {
+		List<Note> listnotes = noteService.getArchiveNotes(token);
 		return listnotes;
 	}
 	
@@ -159,8 +159,14 @@ public class NotesController {
 	 * @return
 	 */
 	@GetMapping("/gettrashnotes")
-	public List<NotesDto>  getTrashNotes(@RequestHeader String token) {
-		List<NotesDto> listnotes = noteService.getTrashNotes(token);
+	public List<Note>  getTrashNotes(@RequestHeader String token) {
+		List<Note> listnotes = noteService.getTrashNotes(token);
+		return listnotes;
+	}
+	
+	@GetMapping("/getpinnednotes")
+	public List<Note> getPinnedNotes(@RequestHeader String token){
+		List<Note> listnotes = noteService.getPinnedNotes(token);
 		return listnotes;
 	}
 }

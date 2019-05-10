@@ -223,14 +223,14 @@ public class NotesServiceImpl implements INotesService {
 	 * @see com.bridgelabz.fundoo.notes.service.INotesService#getArchiveNotes(java.lang.String)
 	 */
 	@Override
-	public List<NotesDto> getArchiveNotes(String token) {
+	public List<Note> getArchiveNotes(String token) {
 		long id = userToken.tokenVerify(token);
 		List<Note> notes = (List<Note>) notesRepository.findByUserId(id);
-		List<NotesDto> listNotes = new ArrayList<>();
+		List<Note> listNotes = new ArrayList<>();
 		for(Note userNotes : notes) {
-			NotesDto notesDto = modelMapper.map(userNotes, NotesDto.class);
+			//NotesDto notesDto = modelMapper.map(userNotes, NotesDto.class);
 			if(userNotes.isArchive() == true) {
-				listNotes.add(notesDto);
+				listNotes.add(userNotes);
 			}
 		}
 		return listNotes;
@@ -240,14 +240,26 @@ public class NotesServiceImpl implements INotesService {
 	 * @see com.bridgelabz.fundoo.notes.service.INotesService#getTrashNotes(java.lang.String)
 	 */
 	@Override
-	public List<NotesDto> getTrashNotes(String token) {
+	public List<Note> getTrashNotes(String token) {
 		long id = userToken.tokenVerify(token);
 		List<Note> notes = (List<Note>) notesRepository.findByUserId(id);
-		List<NotesDto> listNotes = new ArrayList<>();
+		List<Note> listNotes = new ArrayList<>();
 		for(Note userNotes : notes) {
-			NotesDto notesDto = modelMapper.map(userNotes, NotesDto.class);
 			if(userNotes.isTrash() == true) {
-				listNotes.add(notesDto);
+				listNotes.add(userNotes);
+			}
+		}
+		return listNotes;
+	}
+
+	@Override
+	public List<Note> getPinnedNotes(String token) {
+		long id = userToken.tokenVerify(token);
+		List<Note> notes = (List<Note>) notesRepository.findByUserId(id);
+		List<Note> listNotes = new ArrayList<>();
+		for(Note userNotes : notes) {
+			if(userNotes.isPin() == true) {
+				listNotes.add(userNotes);
 			}
 		}
 		return listNotes;
