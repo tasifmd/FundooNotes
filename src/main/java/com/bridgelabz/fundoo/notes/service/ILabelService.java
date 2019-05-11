@@ -6,6 +6,7 @@ import org.springframework.stereotype.Service;
 
 import com.bridgelabz.fundoo.notes.dto.LabelDto;
 import com.bridgelabz.fundoo.notes.dto.NotesDto;
+import com.bridgelabz.fundoo.notes.model.Label;
 import com.bridgelabz.fundoo.response.Response;
 
 /**
@@ -50,7 +51,7 @@ public interface ILabelService {
 	 * @param token
 	 * @return
 	 */
-	public List<LabelDto> getAllLabel(String token);
+	public List<Label> getAllLabel(String token);
 	
 	
 	/**

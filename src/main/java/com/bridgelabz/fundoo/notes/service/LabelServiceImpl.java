@@ -132,7 +132,7 @@ public class LabelServiceImpl implements ILabelService{
 	 * @see com.bridgelabz.fundoo.label.service.ILabelService#getAllLabel(java.lang.String)
 	 */
 	@Override
-	public List<LabelDto> getAllLabel(String token) {
+	public List<Label> getAllLabel(String token) {
 		long userId = userToken.tokenVerify(token);
 		Optional<User> user = userRepository.findById(userId);
 		if(!user.isPresent()) {
@@ -140,10 +140,9 @@ public class LabelServiceImpl implements ILabelService{
 		}
 		
 		List<Label> labels = labelRepository.findByUserId(userId);
-		List<LabelDto> listLabel = new ArrayList<>();
+		List<Label> listLabel = new ArrayList<>();
 		for(Label noteLabel : labels) {
-			LabelDto labelDto = modelMapper.map(noteLabel, LabelDto.class);
-			listLabel.add(labelDto);
+			listLabel.add(noteLabel);
 		}
 		return listLabel;
 	}
