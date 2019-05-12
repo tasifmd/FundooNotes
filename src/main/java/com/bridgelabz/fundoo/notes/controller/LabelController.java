@@ -132,4 +132,5 @@ public class LabelController {
 		List<NotesDto> listNotes = labelService.getNotesOfLabel(token, labelId);
 		return listNotes;
 	}
+	
 }
