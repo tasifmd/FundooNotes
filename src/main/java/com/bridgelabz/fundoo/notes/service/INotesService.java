@@ -86,4 +86,6 @@ public interface INotesService {
 	public List<Note> getTrashNotes(String token);
 	
 	public List<Note> getPinnedNotes(String token);
+	
+	public List<Note> getUnPinnedNotes(String token);
 }

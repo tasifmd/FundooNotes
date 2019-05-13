@@ -265,5 +265,18 @@ public class NotesServiceImpl implements INotesService {
 		return listNotes;
 	}
 
+	@Override
+	public List<Note> getUnPinnedNotes(String token) {
+		long id = userToken.tokenVerify(token);
+		List<Note> notes = (List<Note>) notesRepository.findByUserId(id);
+		List<Note> listNotes = new ArrayList<>();
+		for(Note userNotes : notes) {
+			if(userNotes.isPin() == false) {
+				listNotes.add(userNotes);
+			}
+		}
+		return listNotes;
+	}
+
 	
 }

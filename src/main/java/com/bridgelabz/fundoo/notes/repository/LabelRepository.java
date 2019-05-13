@@ -51,4 +51,8 @@ public interface LabelRepository extends JpaRepository<Label, Long> {
 	public List<Label> findAllLabelsByNotes(@Param("noteId")long notes);
 	
 	public List<Note> findAllNotesByLabelId(long labelId);
+	
+	public List<Label> findAllLabelByUserId(long userId);
+	
+	
 }

@@ -169,4 +169,10 @@ public class NotesController {
 		List<Note> listnotes = noteService.getPinnedNotes(token);
 		return listnotes;
 	}
+	
+	@GetMapping("/getunpinnednotes")
+	public List<Note> getUnPinnedNotes(@RequestHeader String token){
+		List<Note> listnotes = noteService.getUnPinnedNotes(token);
+		return listnotes;
+	}
 }

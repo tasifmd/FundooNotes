@@ -30,4 +30,5 @@ public interface INotesRepository extends JpaRepository<Note, Long>{
 	public List<Note> findByUserId(long id);
 	
 	public List<Label> findAllListLabelById(long id);
+	
 }

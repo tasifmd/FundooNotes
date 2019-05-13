@@ -13,7 +13,7 @@ import org.springframework.stereotype.Service;
 
 import com.bridgelabz.fundoo.exception.LabelException;
 import com.bridgelabz.fundoo.exception.NotesException;
-import com.bridgelabz.fundoo.exception.TokenException;
+//import com.bridgelabz.fundoo.exception.TokenException;
 import com.bridgelabz.fundoo.notes.dto.LabelDto;
 import com.bridgelabz.fundoo.notes.dto.NotesDto;
 import com.bridgelabz.fundoo.notes.model.Label;
@@ -138,12 +138,14 @@ public class LabelServiceImpl implements ILabelService{
 		if(!user.isPresent()) {
 			throw new LabelException("Invalid input", -6);
 		}
+//		List<Label> labels = user.get().getLabel();
 		
 		List<Label> labels = labelRepository.findByUserId(userId);
 		List<Label> listLabel = new ArrayList<>();
 		for(Label noteLabel : labels) {
 			listLabel.add(noteLabel);
 		}
+		System.out.println(labels);
 		return listLabel;
 	}
 
@@ -165,11 +167,11 @@ public class LabelServiceImpl implements ILabelService{
 		if(note == null) {
 			throw new LabelException("No such note exist", -6);
 		}
-		label.setModifiedDate(LocalDateTime.now());
-		label.getNotes().add(note);
+//		label.setModifiedDate(LocalDateTime.now());
+//		label.getNotes().add(note);
 		note.getListLabel().add(label);
 		note.setModified(LocalDateTime.now());
-		labelRepository.save(label);
+//		labelRepository.save(label);
 		notesRepository.save(note);
 		Response response = StatusHelper.statusInfo(environment.getProperty("status.label.addedtonote"), Integer.parseInt(environment.getProperty("status.success.code")));
 		return response;
@@ -234,22 +236,23 @@ public class LabelServiceImpl implements ILabelService{
 	 */
 	@Override
 	public List<NotesDto> getNotesOfLabel(String token, long labelId) {
-		long userId = userToken.tokenVerify(token);
-		Optional<User> user = userRepository.findById(userId);
-		if(!user.isPresent()) {
-			throw new TokenException("Invalid input", -6);
-		}
-		Optional<Label> label = labelRepository.findById(labelId);
-		if(!label.isPresent()) {
-			throw new LabelException("No lebel exist", -6);
-		}
-		List<Note> notes = label.get().getNotes();
-		List<NotesDto> listNotes = new ArrayList<>();
-		for (Note usernotes : notes) {
-			NotesDto noteDto = modelMapper.map(usernotes, NotesDto.class);
-			listNotes.add(noteDto);
-		}
-		return listNotes;
+//		long userId = userToken.tokenVerify(token);
+//		Optional<User> user = userRepository.findById(userId);
+//		if(!user.isPresent()) {
+//			throw new TokenException("Invalid input", -6);
+//		}
+//		Optional<Label> label = labelRepository.findById(labelId);
+//		if(!label.isPresent()) {
+//			throw new LabelException("No lebel exist", -6);
+//		}
+//		List<Note> notes = label.get().getNotes();
+//		List<NotesDto> listNotes = new ArrayList<>();
+//		for (Note usernotes : notes) {
+//			NotesDto noteDto = modelMapper.map(usernotes, NotesDto.class);
+//			listNotes.add(noteDto);
+//		}
+//		return listNotes;
+		return null;
 	}
 	
 	
