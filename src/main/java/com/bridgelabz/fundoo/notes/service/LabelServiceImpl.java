@@ -210,7 +210,7 @@ public class LabelServiceImpl implements ILabelService{
 	 * @see com.bridgelabz.fundoo.label.service.ILabelService#getLebelsOfNote(java.lang.String, long)
 	 */
 	@Override
-	public List<LabelDto> getLebelsOfNote(String token, long noteId) {
+	public List<Label> getLebelsOfNote(String token, long noteId) {
 		long userId = userToken.tokenVerify(token);
 		Optional<User> user = userRepository.findById(userId);
 		if(!user.isPresent()) {
@@ -222,12 +222,12 @@ public class LabelServiceImpl implements ILabelService{
 		}
 		List<Label> lebel = note.get().getListLabel();
 		
-		List<LabelDto> listLabel = new ArrayList<>();
-		for(Label noteLabel : lebel) {
-			LabelDto labelDto = modelMapper.map(noteLabel, LabelDto.class);
-			listLabel.add(labelDto);
-		}
-		return listLabel;
+//		List<LabelDto> listLabel = new ArrayList<>();
+//		for(Label noteLabel : lebel) {
+//			LabelDto labelDto = modelMapper.map(noteLabel, LabelDto.class);
+//			listLabel.add(labelDto);
+//		}
+		return lebel;
 		
 	}
 	

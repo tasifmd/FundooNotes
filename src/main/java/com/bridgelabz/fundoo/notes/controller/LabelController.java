@@ -103,8 +103,8 @@ public class LabelController {
 	 * @return
 	 */
 	@GetMapping("/getlebelofnote")
-	List<LabelDto> getLebelOfNote(@RequestHeader String token, @RequestParam long noteId){
-		List<LabelDto> listLabel = labelService.getLebelsOfNote(token, noteId);
+	List<Label> getLebelOfNote(@RequestHeader String token, @RequestParam long noteId){
+		List<Label> listLabel = labelService.getLebelsOfNote(token, noteId);
 		return listLabel;
 	}
 	

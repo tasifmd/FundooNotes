@@ -70,7 +70,7 @@ public interface ILabelService {
 	 * @param noteId
 	 * @return
 	 */
-	public List<LabelDto> getLebelsOfNote(String token , long noteId);
+	public List<Label> getLebelsOfNote(String token , long noteId);
 	
 	
 	/**
