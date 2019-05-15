@@ -4,7 +4,7 @@ public class NotesDto {
 	
 	private String title;
 	private String description;
-	
+	private String color;
 	public NotesDto() {
 		super();
 	}
@@ -22,10 +22,20 @@ public class NotesDto {
 		this.description = description;
 	}
 
+	public String getColor() {
+		return color;
+	}
+
+	public void setColor(String color) {
+		this.color = color;
+	}
+
 	@Override
 	public String toString() {
-		return "NotesDto [title=" + title + ", description=" + description + "]";
+		return "NotesDto [title=" + title + ", description=" + description + ", color=" + color + "]";
 	}
+
+	
 	
 
 	

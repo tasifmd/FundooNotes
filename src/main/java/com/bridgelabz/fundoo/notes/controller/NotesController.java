@@ -175,4 +175,9 @@ public class NotesController {
 		List<Note> listnotes = noteService.getUnPinnedNotes(token);
 		return listnotes;
 	}
+	@PutMapping("/color")
+	public ResponseEntity<Response> changeColor(@RequestHeader String token,@RequestParam long noteId,@RequestParam String colorCode) {
+		Response responseStatus = noteService.setColor(token, colorCode, noteId);
+		return new  ResponseEntity<Response> (responseStatus,HttpStatus.OK);
+	}	
 }

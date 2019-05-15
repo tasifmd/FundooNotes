@@ -48,6 +48,9 @@ public class Note implements Serializable{
 	@Column(name = "modified")
 	private LocalDateTime modified;
 	
+	@Column(name="color")
+	private String colorCode;
+	
 	@ManyToMany(cascade = CascadeType.ALL)
 	private List<Label> listLabel;
 	
@@ -127,6 +130,14 @@ public class Note implements Serializable{
 		this.modified = modified;
 	}
 
+	public String getColorCode() {
+		return colorCode;
+	}
+
+	public void setColorCode(String colorCode) {
+		this.colorCode = colorCode;
+	}
+
 	public List<Label> getListLabel() {
 		return listLabel;
 	}
@@ -135,16 +146,14 @@ public class Note implements Serializable{
 		this.listLabel = listLabel;
 	}
 
-	public static long getSerialversionuid() {
-		return serialVersionUID;
-	}
-
 	@Override
 	public String toString() {
 		return "Note [id=" + id + ", userId=" + userId + ", title=" + title + ", description=" + description
 				+ ", isPin=" + isPin + ", isArchive=" + isArchive + ", isTrash=" + isTrash + ", created=" + created
-				+ ", modified=" + modified + ", listLabel=" + listLabel + "]";
+				+ ", modified=" + modified + ", colorCode=" + colorCode + ", listLabel=" + listLabel + "]";
 	}
+	
+	
 	
 	
 }

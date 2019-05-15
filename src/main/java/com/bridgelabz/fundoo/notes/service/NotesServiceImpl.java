@@ -88,6 +88,7 @@ public class NotesServiceImpl implements INotesService {
 		Note notes = notesRepository.findByIdAndUserId(noteId, id);
 		notes.setTitle(notesDto.getTitle());
 		notes.setDescription(notesDto.getDescription());
+		notes.setColorCode(notesDto.getColor());
 		notes.setModified(LocalDateTime.now());
 		notesRepository.save(notes);
 		Response response = StatusHelper.statusInfo(environment.getProperty("status.notes.updated"),Integer.parseInt(environment.getProperty("status.success.code")));
@@ -276,6 +277,17 @@ public class NotesServiceImpl implements INotesService {
 			}
 		}
 		return listNotes;
+	}
+
+	@Override
+	public Response setColor(String token, String colorCode , long noteId) {
+		long uderId = userToken.tokenVerify(token);
+		Note note = notesRepository.findByIdAndUserId(noteId, uderId);
+		note.setColorCode(colorCode);
+		note.setModified(LocalDateTime.now());
+		notesRepository.save(note);
+		Response response = StatusHelper.statusInfo(environment.getProperty("status.note.color"),Integer.parseInt(environment.getProperty("status.success.code")));
+		return response;
 	}
 
 	

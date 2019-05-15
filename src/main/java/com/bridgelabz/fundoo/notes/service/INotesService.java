@@ -88,4 +88,6 @@ public interface INotesService {
 	public List<Note> getPinnedNotes(String token);
 	
 	public List<Note> getUnPinnedNotes(String token);
+	
+	public Response setColor(String token , String colorCode , long noteId);
 }
