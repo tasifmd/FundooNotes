@@ -313,11 +313,31 @@ public class NotesServiceImpl implements INotesService {
 		Note note = notesRepository.findByIdAndUserId(noteId, userId);
 		if(note == null)
 			throw new NotesException("No note exist", -5);
-		
-		
-		
-		
-		return null;
+		//user.get().getNotes().add(note);
+		user.get().getCollaboratedNotes().add(note);
+		note.getCollaboratedUser().add(user.get());
+		userRepository.save(user.get());
+		notesRepository.save(note);
+		Response response = StatusHelper.statusInfo(environment.getProperty("status.collab.success"),Integer.parseInt(environment.getProperty("status.success.code")));
+		return response;
+	}
+
+	@Override
+	public Response removeCollaborator(String token, String email, long noteId) {
+		long userId = userToken.tokenVerify(token);
+		Optional<User> user = userRepository.findByEmail(email);
+		if(!user.isPresent()) {
+			throw new EmailException("No user exist", -4);
+		}
+		Note note = notesRepository.findByIdAndUserId(noteId, userId);
+		if(note == null)
+			throw new NotesException("No note exist", -5);
+		user.get().getCollaboratedNotes().remove(note);
+		note.getCollaboratedUser().remove(user.get());
+		userRepository.save(user.get());
+		notesRepository.save(note);
+		Response response = StatusHelper.statusInfo(environment.getProperty("status.collab.remove"),Integer.parseInt(environment.getProperty("status.success.code")));
+		return response;
 	}
 
 	

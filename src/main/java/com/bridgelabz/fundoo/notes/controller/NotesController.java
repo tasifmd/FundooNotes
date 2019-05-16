@@ -180,4 +180,14 @@ public class NotesController {
 		Response responseStatus = noteService.setColor(token, colorCode, noteId);
 		return new  ResponseEntity<Response> (responseStatus,HttpStatus.OK);
 	}	
+	@PutMapping("/collaborator")
+	public  ResponseEntity<Response> addCollab(@RequestHeader String token,@RequestParam String email,@RequestParam long noteId) {
+		Response responseStatus = noteService.addCollaborator(token, email, noteId);
+		return new  ResponseEntity<Response> (responseStatus,HttpStatus.OK);
+	}
+	@PutMapping("/removecollaborator")
+	public ResponseEntity<Response> removeCollab(@RequestHeader String token,@RequestParam String email,@RequestParam long noteId) {
+		Response responseStatus = noteService.removeCollaborator(token, email, noteId);
+		return new  ResponseEntity<Response> (responseStatus,HttpStatus.OK);
+	}
 }

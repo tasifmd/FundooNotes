@@ -116,4 +116,6 @@ public interface INotesService {
 	 * @return
 	 */
 	public Response addCollaborator(String token,String email,long noteId);
+	
+	public Response removeCollaborator(String token,String email,long noteId);
 }

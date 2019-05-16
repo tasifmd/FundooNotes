@@ -20,6 +20,7 @@ import javax.validation.constraints.Pattern;
 
 import com.bridgelabz.fundoo.notes.model.Label;
 import com.bridgelabz.fundoo.notes.model.Note;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 
 /**
@@ -73,6 +74,7 @@ public class User{
 	@OneToMany(cascade = CascadeType.ALL)
 	private List<Label> label;
 	
+	@JsonIgnore
 	@ManyToMany(cascade = CascadeType.ALL)
 	private Set<Note> collaboratedNotes;
 	
