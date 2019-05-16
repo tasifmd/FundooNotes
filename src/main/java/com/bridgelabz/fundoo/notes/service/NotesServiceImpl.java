@@ -13,6 +13,7 @@ import org.springframework.context.annotation.PropertySource;
 import org.springframework.core.env.Environment;
 import org.springframework.stereotype.Service;
 
+import com.bridgelabz.fundoo.exception.EmailException;
 import com.bridgelabz.fundoo.exception.NotesException;
 import com.bridgelabz.fundoo.notes.dto.NotesDto;
 import com.bridgelabz.fundoo.notes.model.Note;
@@ -253,6 +254,9 @@ public class NotesServiceImpl implements INotesService {
 		return listNotes;
 	}
 
+	/* (non-Javadoc)
+	 * @see com.bridgelabz.fundoo.notes.service.INotesService#getPinnedNotes(java.lang.String)
+	 */
 	@Override
 	public List<Note> getPinnedNotes(String token) {
 		long id = userToken.tokenVerify(token);
@@ -266,6 +270,9 @@ public class NotesServiceImpl implements INotesService {
 		return listNotes;
 	}
 
+	/* (non-Javadoc)
+	 * @see com.bridgelabz.fundoo.notes.service.INotesService#getUnPinnedNotes(java.lang.String)
+	 */
 	@Override
 	public List<Note> getUnPinnedNotes(String token) {
 		long id = userToken.tokenVerify(token);
@@ -279,6 +286,9 @@ public class NotesServiceImpl implements INotesService {
 		return listNotes;
 	}
 
+	/* (non-Javadoc)
+	 * @see com.bridgelabz.fundoo.notes.service.INotesService#setColor(java.lang.String, java.lang.String, long)
+	 */
 	@Override
 	public Response setColor(String token, String colorCode , long noteId) {
 		long uderId = userToken.tokenVerify(token);
@@ -288,6 +298,26 @@ public class NotesServiceImpl implements INotesService {
 		notesRepository.save(note);
 		Response response = StatusHelper.statusInfo(environment.getProperty("status.note.color"),Integer.parseInt(environment.getProperty("status.success.code")));
 		return response;
+	}
+
+	/* (non-Javadoc)
+	 * @see com.bridgelabz.fundoo.notes.service.INotesService#addCollaborator(java.lang.String, java.lang.String, long)
+	 */
+	@Override
+	public Response addCollaborator(String token, String email, long noteId) {
+		long userId = userToken.tokenVerify(token);
+		Optional<User> user = userRepository.findByEmail(email);
+		if(!user.isPresent()) {
+			throw new EmailException("No user exist", -4);
+		}
+		Note note = notesRepository.findByIdAndUserId(noteId, userId);
+		if(note == null)
+			throw new NotesException("No note exist", -5);
+		
+		
+		
+		
+		return null;
 	}
 
 	

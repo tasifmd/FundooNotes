@@ -85,9 +85,35 @@ public interface INotesService {
 	 */
 	public List<Note> getTrashNotes(String token);
 	
+	/**
+	 * Purpose : Function to get all pinned notes 
+	 * @param token
+	 * @return
+	 */
 	public List<Note> getPinnedNotes(String token);
 	
+	/**
+	 * Purpose : Function to get all unpinned notes 
+	 * @param token
+	 * @return
+	 */
 	public List<Note> getUnPinnedNotes(String token);
 	
+	/**
+	 * Purpose : Function to set color
+	 * @param token
+	 * @param colorCode
+	 * @param noteId
+	 * @return
+	 */
 	public Response setColor(String token , String colorCode , long noteId);
+	
+	/**
+	 * Purpose : Function to collaborate note
+	 * @param token
+	 * @param email
+	 * @param noteId
+	 * @return
+	 */
+	public Response addCollaborator(String token,String email,long noteId);
 }

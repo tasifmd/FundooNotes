@@ -3,6 +3,7 @@ package com.bridgelabz.fundoo.notes.model;
 import java.io.Serializable;
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.Set;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -12,6 +13,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
+
+import com.bridgelabz.fundoo.user.model.User;
 
 @Entity
 @Table(name = "notes")
@@ -53,6 +56,9 @@ public class Note implements Serializable{
 	
 	@ManyToMany(cascade = CascadeType.ALL)
 	private List<Label> listLabel;
+	
+	@ManyToMany(cascade = CascadeType.ALL)
+	private Set<User> collaboratedUser;
 	
 	public Note() {
 		super();
@@ -146,14 +152,21 @@ public class Note implements Serializable{
 		this.listLabel = listLabel;
 	}
 
+	public Set<User> getCollaboratedUser() {
+		return collaboratedUser;
+	}
+
+	public void setCollaboratedUser(Set<User> collaboratedUser) {
+		this.collaboratedUser = collaboratedUser;
+	}
+
 	@Override
 	public String toString() {
 		return "Note [id=" + id + ", userId=" + userId + ", title=" + title + ", description=" + description
 				+ ", isPin=" + isPin + ", isArchive=" + isArchive + ", isTrash=" + isTrash + ", created=" + created
-				+ ", modified=" + modified + ", colorCode=" + colorCode + ", listLabel=" + listLabel + "]";
+				+ ", modified=" + modified + ", colorCode=" + colorCode + ", listLabel=" + listLabel
+				+ ", collaboratedUser=" + collaboratedUser + "]";
 	}
-	
-	
 	
 	
 }

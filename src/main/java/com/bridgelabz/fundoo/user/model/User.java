@@ -2,6 +2,7 @@ package com.bridgelabz.fundoo.user.model;
 
 import java.time.LocalDate;
 import java.util.List;
+import java.util.Set;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -9,6 +10,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.Email;
@@ -70,6 +72,9 @@ public class User{
 	
 	@OneToMany(cascade = CascadeType.ALL)
 	private List<Label> label;
+	
+	@ManyToMany(cascade = CascadeType.ALL)
+	private Set<Note> collaboratedNotes;
 	
 	public User() {
 		super();
@@ -155,12 +160,23 @@ public class User{
 		this.label = label;
 	}
 
+	public Set<Note> getCollaboratedNotes() {
+		return collaboratedNotes;
+	}
+
+	public void setCollaboratedNotes(Set<Note> collaboratedNotes) {
+		this.collaboratedNotes = collaboratedNotes;
+	}
+
 	@Override
 	public String toString() {
 		return "User [userId=" + userId + ", name=" + name + ", email=" + email + ", password=" + password
 				+ ", mobileNumber=" + mobileNumber + ", isVarified=" + isVarified + ", registeredDate=" + registeredDate
-				+ ", updatedDate=" + updatedDate + ", notes=" + notes + ", label=" + label + "]";
+				+ ", updatedDate=" + updatedDate + ", notes=" + notes + ", label=" + label + ", collaboratedNotes="
+				+ collaboratedNotes + "]";
 	}
+
+	
 	
 	
 }
