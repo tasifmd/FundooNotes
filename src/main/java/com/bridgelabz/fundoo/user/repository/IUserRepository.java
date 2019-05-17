@@ -1,10 +1,12 @@
 package com.bridgelabz.fundoo.user.repository;
 
 import java.util.Optional;
+import java.util.Set;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
+import com.bridgelabz.fundoo.notes.model.Note;
 import com.bridgelabz.fundoo.user.model.User;
 
 /**
@@ -16,6 +18,8 @@ import com.bridgelabz.fundoo.user.model.User;
 public interface IUserRepository extends JpaRepository<User, Long>{
 
 	public Optional<User> findByEmail(String email);
+	
+	public Set<Note> findAllCollaboratedNotesByUserId(long userId);
 	
 	
 }

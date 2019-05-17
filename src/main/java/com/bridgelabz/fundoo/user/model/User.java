@@ -76,7 +76,7 @@ public class User{
 	
 	@JsonIgnore
 	@ManyToMany(cascade = CascadeType.ALL)
-	private Set<Note> collaboratedNotes;
+	private List<Note> collaboratedNotes;
 	
 	public User() {
 		super();
@@ -162,11 +162,11 @@ public class User{
 		this.label = label;
 	}
 
-	public Set<Note> getCollaboratedNotes() {
+	public List<Note> getCollaboratedNotes() {
 		return collaboratedNotes;
 	}
 
-	public void setCollaboratedNotes(Set<Note> collaboratedNotes) {
+	public void setCollaboratedNotes(List<Note> collaboratedNotes) {
 		this.collaboratedNotes = collaboratedNotes;
 	}
 

@@ -6,6 +6,7 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter
 
 import com.bridgelabz.fundoo.interceptor.FundooInterceptor;
 
+@SuppressWarnings("deprecation")
 public class InterceptorConfig extends WebMvcConfigurerAdapter {
 	@Autowired
 	FundooInterceptor fundooInterceptor;

@@ -4,6 +4,7 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import java.util.Set;
 
 import org.modelmapper.ModelMapper;
 import org.slf4j.Logger;
@@ -340,5 +341,15 @@ public class NotesServiceImpl implements INotesService {
 		return response;
 	}
 
+	@Override
+	public Set<Note> getCollaboratedNotes(String token) {
+		long userId = userToken.tokenVerify(token);
+		Optional<User> user = userRepository.findById(userId);
+		if(!user.isPresent())
+			throw new NotesException("No user exist", -5);	
+		Set<Note> collaboratedNotes = userRepository.findAllCollaboratedNotesByUserId(userId);
+		return collaboratedNotes;
+	}
+	
 	
 }

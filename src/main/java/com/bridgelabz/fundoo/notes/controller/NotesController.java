@@ -1,6 +1,7 @@
 package com.bridgelabz.fundoo.notes.controller;
 
 import java.util.List;
+import java.util.Set;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -189,5 +190,10 @@ public class NotesController {
 	public ResponseEntity<Response> removeCollab(@RequestHeader String token,@RequestParam String email,@RequestParam long noteId) {
 		Response responseStatus = noteService.removeCollaborator(token, email, noteId);
 		return new  ResponseEntity<Response> (responseStatus,HttpStatus.OK);
+	}
+	@GetMapping("/getallcollaboratednotes")
+	public Set<Note> getCollaboratedNotes(@RequestHeader String token) {
+		Set<Note> collaboratednotes = noteService.getCollaboratedNotes(token);
+		return collaboratednotes;
 	}
 }

@@ -1,6 +1,7 @@
 package com.bridgelabz.fundoo.notes.service;
 
 import java.util.List;
+import java.util.Set;
 
 import org.springframework.stereotype.Service;
 
@@ -118,4 +119,6 @@ public interface INotesService {
 	public Response addCollaborator(String token,String email,long noteId);
 	
 	public Response removeCollaborator(String token,String email,long noteId);
+	
+	public Set<Note> getCollaboratedNotes(String token);
 }
