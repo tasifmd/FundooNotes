@@ -2,6 +2,7 @@ package com.bridgelabz.fundoo.user.service;
 
 import java.io.UnsupportedEncodingException;
 import java.time.LocalDate;
+import java.util.List;
 import java.util.Optional;
 
 import org.modelmapper.ModelMapper;
@@ -243,6 +244,15 @@ public class UserServicesImplementation implements IUserServices {
 //		}
 		response = StatusHelper.statusInfo(environment.getProperty("status.passreset.failed"),Integer.parseInt(environment.getProperty("status.login.errorCode")));
 		return response;
+	}
+
+	@Override
+	public List<User> getUserInfo(String email) {
+		Optional<User> user = userRepository.findByEmail(email);
+		if(!user.isPresent())
+			throw new RegistrationException("No user exist", -2);
+		List<User> listUser = userRepository.findAllUserByEmail(email);
+		return listUser;
 	}
 	
 

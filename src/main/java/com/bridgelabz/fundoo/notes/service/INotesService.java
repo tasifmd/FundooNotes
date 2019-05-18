@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import com.bridgelabz.fundoo.notes.dto.NotesDto;
 import com.bridgelabz.fundoo.notes.model.Note;
 import com.bridgelabz.fundoo.response.Response;
+import com.bridgelabz.fundoo.user.model.User;
 
 /**
  * Purpose : Service class for notes
@@ -121,4 +122,6 @@ public interface INotesService {
 	public Response removeCollaborator(String token,String email,long noteId);
 	
 	public Set<Note> getCollaboratedNotes(String token);
+	
+	public Set<User> getCollaboratedUser(String token ,long noteId);
 }

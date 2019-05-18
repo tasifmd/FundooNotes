@@ -347,8 +347,19 @@ public class NotesServiceImpl implements INotesService {
 		Optional<User> user = userRepository.findById(userId);
 		if(!user.isPresent())
 			throw new NotesException("No user exist", -5);	
-		Set<Note> collaboratedNotes = userRepository.findAllCollaboratedNotesByUserId(userId);
+		Set<Note> collaboratedNotes = user.get().getCollaboratedNotes();
 		return collaboratedNotes;
+	}
+
+	@Override
+	public Set<User> getCollaboratedUser(String token,long noteId) {
+		long userId = userToken.tokenVerify(token);
+		Optional<User> user = userRepository.findById(userId);
+		if(!user.isPresent())
+			throw new NotesException("No user exist", -5);	
+		Optional<Note> note = notesRepository.findById(noteId);
+		Set<User> collaboratedUser = note.get().getCollaboratedUser();
+		return collaboratedUser;
 	}
 	
 	

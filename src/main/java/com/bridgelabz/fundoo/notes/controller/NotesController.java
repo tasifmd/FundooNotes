@@ -26,6 +26,7 @@ import com.bridgelabz.fundoo.notes.dto.NotesDto;
 import com.bridgelabz.fundoo.notes.model.Note;
 import com.bridgelabz.fundoo.notes.service.INotesService;
 import com.bridgelabz.fundoo.response.Response;
+import com.bridgelabz.fundoo.user.model.User;
 
 /**
  * Purpose : Note controller class 
@@ -195,5 +196,10 @@ public class NotesController {
 	public Set<Note> getCollaboratedNotes(@RequestHeader String token) {
 		Set<Note> collaboratednotes = noteService.getCollaboratedNotes(token);
 		return collaboratednotes;
+	}
+	@GetMapping("/getallcollaborateduser")
+	public Set<User> getCollaboratedUser(@RequestHeader String token , @RequestParam long noteId) {
+		Set<User> collaboratedUser = noteService.getCollaboratedUser(token, noteId);
+		return collaboratedUser;
 	}
 }

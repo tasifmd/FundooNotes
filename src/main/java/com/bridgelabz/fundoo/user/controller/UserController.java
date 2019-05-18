@@ -1,6 +1,7 @@
 package com.bridgelabz.fundoo.user.controller;
 
 import java.io.UnsupportedEncodingException;
+import java.util.List;
 
 import javax.validation.Valid;
 
@@ -17,6 +18,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.bridgelabz.fundoo.response.Response;
@@ -24,6 +26,7 @@ import com.bridgelabz.fundoo.response.ResponseToken;
 import com.bridgelabz.fundoo.user.dto.LoginDTO;
 import com.bridgelabz.fundoo.user.dto.PasswordDTO;
 import com.bridgelabz.fundoo.user.dto.UserDTO;
+import com.bridgelabz.fundoo.user.model.User;
 import com.bridgelabz.fundoo.user.service.IUserServices;
 
 /**
@@ -128,5 +131,11 @@ public class UserController {
 		Response statusResponse = userServices.resetPassword(passwordDto, token);
 		return new ResponseEntity<Response> (statusResponse, HttpStatus.OK);
 		
+	}
+	
+	@GetMapping("/userinfo")
+	public List<User> getUserInfo(@RequestParam String email) {
+		List<User> user = userServices.getUserInfo(email);
+		return user;
 	}
 }

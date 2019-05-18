@@ -1,5 +1,6 @@
 package com.bridgelabz.fundoo.user.repository;
 
+import java.util.List;
 import java.util.Optional;
 import java.util.Set;
 
@@ -20,6 +21,8 @@ public interface IUserRepository extends JpaRepository<User, Long>{
 	public Optional<User> findByEmail(String email);
 	
 	public Set<Note> findAllCollaboratedNotesByUserId(long userId);
+	
+	public List<User> findAllUserByEmail(String email);
 	
 	
 }
