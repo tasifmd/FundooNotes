@@ -1,8 +1,6 @@
 package com.bridgelabz.fundoo.user.controller;
 
 import java.io.UnsupportedEncodingException;
-import java.util.List;
-
 import javax.validation.Valid;
 
 import org.slf4j.Logger;
@@ -134,8 +132,8 @@ public class UserController {
 	}
 	
 	@GetMapping("/userinfo")
-	public List<User> getUserInfo(@RequestParam String email) {
-		List<User> user = userServices.getUserInfo(email);
-		return user;
+	public ResponseEntity<User> getUserInfo(@RequestParam String email) {
+		User user = userServices.getUserInfo(email);
+		return new ResponseEntity<User>(user, HttpStatus.OK);
 	}
 }

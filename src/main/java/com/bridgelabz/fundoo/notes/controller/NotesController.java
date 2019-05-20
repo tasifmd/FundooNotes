@@ -182,7 +182,7 @@ public class NotesController {
 		Response responseStatus = noteService.setColor(token, colorCode, noteId);
 		return new  ResponseEntity<Response> (responseStatus,HttpStatus.OK);
 	}	
-	@PutMapping("/collaborator")
+	@PutMapping("/addcollaborator")
 	public  ResponseEntity<Response> addCollab(@RequestHeader String token,@RequestParam String email,@RequestParam long noteId) {
 		Response responseStatus = noteService.addCollaborator(token, email, noteId);
 		return new  ResponseEntity<Response> (responseStatus,HttpStatus.OK);

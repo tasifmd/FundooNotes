@@ -10,6 +10,7 @@ public class ResponseToken {
 	private String statusMessage;	
 	private int statusCode;
 	private String token;
+	private String userName;
 	public String getStatusMessage() {
 		return statusMessage;
 	}
@@ -27,6 +28,12 @@ public class ResponseToken {
 	}
 	public void setToken(String token) {
 		this.token = token;
+	}
+	public String getUserName() {
+		return userName;
+	}
+	public void setUserName(String userName) {
+		this.userName = userName;
 	}
 	
 }

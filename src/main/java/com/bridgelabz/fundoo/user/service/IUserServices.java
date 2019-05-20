@@ -1,7 +1,6 @@
 package com.bridgelabz.fundoo.user.service;
 
 import java.io.UnsupportedEncodingException;
-import java.util.List;
 
 import org.springframework.stereotype.Service;
 
@@ -64,5 +63,5 @@ public interface IUserServices {
 	 */
 	public Response resetPassword(PasswordDTO passwordDto , String token);
 	
-	public List<User> getUserInfo(String email);
+	public User getUserInfo(String email);
 }

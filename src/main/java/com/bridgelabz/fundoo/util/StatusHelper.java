@@ -13,12 +13,12 @@ public class StatusHelper {
 		return response;
 	}
 	
-	public static ResponseToken tokenStatusInfo(String statusMessage,int statusCode,String token){
+	public static ResponseToken tokenStatusInfo(String statusMessage,int statusCode,String token,String userName){
 		ResponseToken tokenResponse = new ResponseToken();
 		tokenResponse.setStatusCode(statusCode);
 		tokenResponse.setStatusMessage(statusMessage);
 		tokenResponse.setToken(token);
-
+		tokenResponse.setUserName(userName);
 		return tokenResponse;
 	}
 	public static ResponseToken statusResponseInfo(String statusMessage, int statusCode) {

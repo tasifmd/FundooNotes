@@ -20,8 +20,10 @@ import com.bridgelabz.fundoo.notes.dto.NotesDto;
 import com.bridgelabz.fundoo.notes.model.Note;
 import com.bridgelabz.fundoo.notes.repository.INotesRepository;
 import com.bridgelabz.fundoo.response.Response;
+import com.bridgelabz.fundoo.user.model.Email;
 import com.bridgelabz.fundoo.user.model.User;
 import com.bridgelabz.fundoo.user.repository.IUserRepository;
+import com.bridgelabz.fundoo.util.GenerateEmail;
 import com.bridgelabz.fundoo.util.StatusHelper;
 import com.bridgelabz.fundoo.util.UserToken;
 
@@ -51,6 +53,8 @@ public class NotesServiceImpl implements INotesService {
 	@Autowired
 	private Environment environment;
 	
+	@Autowired
+	private GenerateEmail generateEmail;
 	
 	/* (non-Javadoc)
 	 * @see com.bridgelabz.fundoo.notes.service.INotesService#createNote(com.bridgelabz.fundoo.notes.dto.NotesDto, java.lang.String)
@@ -306,7 +310,9 @@ public class NotesServiceImpl implements INotesService {
 	 */
 	@Override
 	public Response addCollaborator(String token, String email, long noteId) {
+		Email collabEmail = new Email();
 		long userId = userToken.tokenVerify(token);
+		Optional<User> owner = userRepository.findById(userId);
 		Optional<User> user = userRepository.findByEmail(email);
 		if(!user.isPresent()) {
 			throw new EmailException("No user exist", -4);
@@ -319,6 +325,11 @@ public class NotesServiceImpl implements INotesService {
 		note.getCollaboratedUser().add(user.get());
 		userRepository.save(user.get());
 		notesRepository.save(note);
+		collabEmail.setFrom("fundootasif@gmail.com");
+		collabEmail.setTo(email);
+		collabEmail.setSubject("Note collaboration ");
+		collabEmail.setBody("Note from " + owner.get().getEmail() + " collaborated to you");
+		generateEmail.send(collabEmail);
 		Response response = StatusHelper.statusInfo(environment.getProperty("status.collab.success"),Integer.parseInt(environment.getProperty("status.success.code")));
 		return response;
 	}

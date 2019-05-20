@@ -2,7 +2,6 @@ package com.bridgelabz.fundoo.user.service;
 
 import java.io.UnsupportedEncodingException;
 import java.time.LocalDate;
-import java.util.List;
 import java.util.Optional;
 
 import org.modelmapper.ModelMapper;
@@ -129,7 +128,7 @@ public class UserServicesImplementation implements IUserServices {
 			if(user.get().isVarified() == true) {
 				if(passwordEncoder.matches(loginDto.getPassword(), user.get().getPassword())) {
 					String generatedToken = userToken.generateToken(user.get().getUserId());
-					response = StatusHelper.tokenStatusInfo(environment.getProperty("status.login.success"),Integer.parseInt(environment.getProperty("status.success.code")),generatedToken);
+					response = StatusHelper.tokenStatusInfo(environment.getProperty("status.login.success"),Integer.parseInt(environment.getProperty("status.success.code")),generatedToken,user.get().getName());
 					return response;
 				}else {
 					throw new LoginException("Invalid Password ", -3);
@@ -247,12 +246,12 @@ public class UserServicesImplementation implements IUserServices {
 	}
 
 	@Override
-	public List<User> getUserInfo(String email) {
+	public User getUserInfo(String email) {
 		Optional<User> user = userRepository.findByEmail(email);
 		if(!user.isPresent())
 			throw new RegistrationException("No user exist", -2);
-		List<User> listUser = userRepository.findAllUserByEmail(email);
-		return listUser;
+		User userInfo = user.get();
+		return userInfo;
 	}
 	
 
