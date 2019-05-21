@@ -169,3 +169,9 @@
 2019-05-21 16:13:47.334  INFO 29043 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
 2019-05-21 16:13:47.351  INFO 29043 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 17 ms
 2019-05-21 16:13:47.973  INFO 29043 --- [http-nio-8080-exec-1] o.h.h.i.QueryTranslatorFactoryInitiator  : HHH000397: Using ASTQueryTranslatorFactory
+2019-05-21 17:43:51.055  INFO 29043 --- [http-nio-8080-exec-5] c.b.f.notes.controller.NotesController   : NotesDto [title=, description=tasif
+thtfghfg
+fgjijhio
+ghgjhg
+hgjhijih
+ghduio, color=null]
