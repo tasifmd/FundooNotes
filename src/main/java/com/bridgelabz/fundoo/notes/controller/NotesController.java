@@ -166,37 +166,79 @@ public class NotesController {
 		return listnotes;
 	}
 	
+	/**
+	 * Purpose : Function to get all pinned notes 
+	 * @param token
+	 * @return
+	 */
 	@GetMapping("/getpinnednotes")
 	public List<Note> getPinnedNotes(@RequestHeader String token){
 		List<Note> listnotes = noteService.getPinnedNotes(token);
 		return listnotes;
 	}
 	
+	/**
+	 * Purpose : Function to get all unpinned notes 
+	 * @param token
+	 * @return
+	 */
 	@GetMapping("/getunpinnednotes")
 	public List<Note> getUnPinnedNotes(@RequestHeader String token){
 		List<Note> listnotes = noteService.getUnPinnedNotes(token);
 		return listnotes;
 	}
+	/**
+	 * Purpose : Function to change color
+	 * @param token
+	 * @param noteId
+	 * @param colorCode
+	 * @return
+	 */
 	@PutMapping("/color")
 	public ResponseEntity<Response> changeColor(@RequestHeader String token,@RequestParam long noteId,@RequestParam String colorCode) {
 		Response responseStatus = noteService.setColor(token, colorCode, noteId);
 		return new  ResponseEntity<Response> (responseStatus,HttpStatus.OK);
 	}	
+	/**
+	 * Purpose : Function to add collaborator
+	 * @param token
+	 * @param email
+	 * @param noteId
+	 * @return
+	 */
 	@PutMapping("/addcollaborator")
 	public  ResponseEntity<Response> addCollab(@RequestHeader String token,@RequestParam String email,@RequestParam long noteId) {
 		Response responseStatus = noteService.addCollaborator(token, email, noteId);
 		return new  ResponseEntity<Response> (responseStatus,HttpStatus.OK);
 	}
+	/**
+	 * Purpose : Function to remove collaborator
+	 * @param token
+	 * @param email
+	 * @param noteId
+	 * @return
+	 */
 	@PutMapping("/removecollaborator")
 	public ResponseEntity<Response> removeCollab(@RequestHeader String token,@RequestParam String email,@RequestParam long noteId) {
 		Response responseStatus = noteService.removeCollaborator(token, email, noteId);
 		return new  ResponseEntity<Response> (responseStatus,HttpStatus.OK);
 	}
+	/**
+	 * Purpose : Function to get all collaborated notes
+	 * @param token
+	 * @return
+	 */
 	@GetMapping("/getallcollaboratednotes")
 	public Set<Note> getCollaboratedNotes(@RequestHeader String token) {
 		Set<Note> collaboratednotes = noteService.getCollaboratedNotes(token);
 		return collaboratednotes;
 	}
+	/**
+	 * Purpose : Function to get all collaborated users
+	 * @param token
+	 * @param noteId
+	 * @return
+	 */
 	@GetMapping("/getallcollaborateduser")
 	public Set<User> getCollaboratedUser(@RequestHeader String token , @RequestParam long noteId) {
 		Set<User> collaboratedUser = noteService.getCollaboratedUser(token, noteId);

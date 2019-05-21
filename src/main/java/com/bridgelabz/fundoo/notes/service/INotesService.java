@@ -111,7 +111,7 @@ public interface INotesService {
 	public Response setColor(String token , String colorCode , long noteId);
 	
 	/**
-	 * Purpose : Function to collaborate note
+	 * Purpose : Function to add collaborator
 	 * @param token
 	 * @param email
 	 * @param noteId
@@ -119,9 +119,27 @@ public interface INotesService {
 	 */
 	public Response addCollaborator(String token,String email,long noteId);
 	
+	/**
+	 * Purpose : Function to remove collaborator
+	 * @param token
+	 * @param email
+	 * @param noteId
+	 * @return
+	 */
 	public Response removeCollaborator(String token,String email,long noteId);
 	
+	/**
+	 * Purpose : Function to get collaborated notes
+	 * @param token
+	 * @return
+	 */
 	public Set<Note> getCollaboratedNotes(String token);
 	
+	/**
+	 * Purpose : Function to get collaborated user
+	 * @param token
+	 * @param noteId
+	 * @return
+	 */
 	public Set<User> getCollaboratedUser(String token ,long noteId);
 }

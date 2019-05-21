@@ -167,6 +167,9 @@ public class LabelServiceImpl implements ILabelService{
 		if(note == null) {
 			throw new LabelException("No such note exist", -6);
 		}
+		if(note.getListLabel().contains(label)) {
+			throw new LabelException("Label already exist", -6);
+		}
 //		label.setModifiedDate(LocalDateTime.now());
 //		label.getNotes().add(note);
 		note.getListLabel().add(label);

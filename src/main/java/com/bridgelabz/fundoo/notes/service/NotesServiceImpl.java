@@ -312,56 +312,84 @@ public class NotesServiceImpl implements INotesService {
 	public Response addCollaborator(String token, String email, long noteId) {
 		Email collabEmail = new Email();
 		long userId = userToken.tokenVerify(token);
+		
 		Optional<User> owner = userRepository.findById(userId);
 		Optional<User> user = userRepository.findByEmail(email);
-		if(!user.isPresent()) {
+		
+		if(!user.isPresent())
 			throw new EmailException("No user exist", -4);
-		}
+		
 		Note note = notesRepository.findByIdAndUserId(noteId, userId);
+		
 		if(note == null)
 			throw new NotesException("No note exist", -5);
-		//user.get().getNotes().add(note);
+		
+		if(user.get().getCollaboratedNotes().contains(note)) 
+			throw new NotesException("Note is already collaborated", -5);
+		
 		user.get().getCollaboratedNotes().add(note);
 		note.getCollaboratedUser().add(user.get());
+		
 		userRepository.save(user.get());
 		notesRepository.save(note);
+		
 		collabEmail.setFrom("fundootasif@gmail.com");
 		collabEmail.setTo(email);
 		collabEmail.setSubject("Note collaboration ");
-		collabEmail.setBody("Note from " + owner.get().getEmail() + " collaborated to you");
+		collabEmail.setBody("Note from " + owner.get().getEmail() + " collaborated to you\nTitle : " + note.getTitle() +"\nDescription : " + note.getDescription());
 		generateEmail.send(collabEmail);
+		
 		Response response = StatusHelper.statusInfo(environment.getProperty("status.collab.success"),Integer.parseInt(environment.getProperty("status.success.code")));
 		return response;
 	}
 
+	/* (non-Javadoc)
+	 * @see com.bridgelabz.fundoo.notes.service.INotesService#removeCollaborator(java.lang.String, java.lang.String, long)
+	 */
 	@Override
 	public Response removeCollaborator(String token, String email, long noteId) {
+		
 		long userId = userToken.tokenVerify(token);
 		Optional<User> user = userRepository.findByEmail(email);
-		if(!user.isPresent()) {
+		
+		if(!user.isPresent()) 
 			throw new EmailException("No user exist", -4);
-		}
+		
 		Note note = notesRepository.findByIdAndUserId(noteId, userId);
+		
 		if(note == null)
 			throw new NotesException("No note exist", -5);
+		
 		user.get().getCollaboratedNotes().remove(note);
 		note.getCollaboratedUser().remove(user.get());
+		
 		userRepository.save(user.get());
 		notesRepository.save(note);
+		
 		Response response = StatusHelper.statusInfo(environment.getProperty("status.collab.remove"),Integer.parseInt(environment.getProperty("status.success.code")));
 		return response;
 	}
 
+	/* (non-Javadoc)
+	 * @see com.bridgelabz.fundoo.notes.service.INotesService#getCollaboratedNotes(java.lang.String)
+	 */
 	@Override
 	public Set<Note> getCollaboratedNotes(String token) {
+		
 		long userId = userToken.tokenVerify(token);
 		Optional<User> user = userRepository.findById(userId);
+		
 		if(!user.isPresent())
 			throw new NotesException("No user exist", -5);	
+		
 		Set<Note> collaboratedNotes = user.get().getCollaboratedNotes();
+		
 		return collaboratedNotes;
 	}
 
+	/* (non-Javadoc)
+	 * @see com.bridgelabz.fundoo.notes.service.INotesService#getCollaboratedUser(java.lang.String, long)
+	 */
 	@Override
 	public Set<User> getCollaboratedUser(String token,long noteId) {
 		long userId = userToken.tokenVerify(token);

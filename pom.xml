@@ -69,13 +69,14 @@
 			<artifactId>spring-boot-starter-test</artifactId>
 			<scope>test</scope>
 		</dependency>
+		
 		<!-- https://mvnrepository.com/artifact/org.projectlombok/lombok -->
-		<!-- <dependency>
+		<dependency>
    			<groupId>org.projectlombok</groupId>
     		<artifactId>lombok</artifactId>
-    		<optional>true</optional>
     		<scope>provided</scope>
-		</dependency> -->
+		</dependency>
+
 		<!-- https://mvnrepository.com/artifact/io.springfox/springfox-swagger2 -->
 		<dependency>
    			<groupId>io.springfox</groupId>
