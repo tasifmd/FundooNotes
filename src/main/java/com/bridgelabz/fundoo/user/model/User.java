@@ -78,6 +78,9 @@ public class User{
 	@ManyToMany(cascade = CascadeType.ALL)
 	private Set<Note> collaboratedNotes;
 	
+	@Column(name = "profilePic")
+	private String profilePic;
+	
 	public User() {
 		super();
 	}
@@ -170,15 +173,20 @@ public class User{
 		this.collaboratedNotes = collaboratedNotes;
 	}
 
+	public String getProfilePic() {
+		return profilePic;
+	}
+
+	public void setProfilePic(String profilePic) {
+		this.profilePic = profilePic;
+	}
+
 	@Override
 	public String toString() {
 		return "User [userId=" + userId + ", name=" + name + ", email=" + email + ", password=" + password
 				+ ", mobileNumber=" + mobileNumber + ", isVarified=" + isVarified + ", registeredDate=" + registeredDate
 				+ ", updatedDate=" + updatedDate + ", notes=" + notes + ", label=" + label + ", collaboratedNotes="
-				+ collaboratedNotes + "]";
+				+ collaboratedNotes + ", profilePic=" + profilePic + "]";
 	}
-
-	
-	
 	
 }

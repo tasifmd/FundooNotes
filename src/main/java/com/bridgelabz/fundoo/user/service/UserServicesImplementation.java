@@ -1,8 +1,15 @@
 package com.bridgelabz.fundoo.user.service;
 
+import java.io.IOException;
 import java.io.UnsupportedEncodingException;
+import java.net.MalformedURLException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.nio.file.StandardCopyOption;
 import java.time.LocalDate;
 import java.util.Optional;
+import java.util.UUID;
 
 import org.modelmapper.ModelMapper;
 import org.slf4j.Logger;
@@ -10,8 +17,11 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.core.env.Environment;
+import org.springframework.core.io.Resource;
+import org.springframework.core.io.UrlResource;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.bridgelabz.fundoo.exception.EmailException;
 import com.bridgelabz.fundoo.exception.LoginException;
@@ -60,6 +70,7 @@ public class UserServicesImplementation implements IUserServices {
 	@Autowired
 	private GenerateEmail generateEmail;
 	
+	private final Path fileLocation = Paths.get("/home/admin1/Desktop/Tasif/MyFiles");
 	
 	/* (non-Javadoc)
 	 * @see com.bridgelabz.fundoo.user.service.IUserServices#register(com.bridgelabz.fundoo.user.dto.UserDTO, javax.servlet.http.HttpServletRequest)
@@ -252,6 +263,46 @@ public class UserServicesImplementation implements IUserServices {
 			throw new RegistrationException("No user exist", -2);
 		User userInfo = user.get();
 		return userInfo;
+	}
+
+	@Override
+	public Response uploadImage(String token, MultipartFile file) {
+		Response response = null;
+		long id = userToken.tokenVerify(token);
+		Optional<User> user = userRepository.findById(id);
+		if(!user.isPresent())
+			throw new LoginException("User doesn't exist ", -3);
+		UUID uuid = UUID.randomUUID();
+		String uniqueId = uuid.toString();
+		try {
+			Files.copy(file.getInputStream(), fileLocation.resolve(uniqueId), StandardCopyOption.REPLACE_EXISTING);
+		} catch (IOException e) {
+			log.error("Inavlid file", e);
+		}
+		user.get().setProfilePic(uniqueId);
+		userRepository.save(user.get());
+		response = StatusHelper.statusInfo(environment.getProperty("status.pic.upload"),Integer.parseInt(environment.getProperty("status.success.code")));
+		return response;
+	}
+
+	@Override
+	public Resource getUploadedImage(String token) {
+		long id = userToken.tokenVerify(token);
+		Optional<User> user = userRepository.findById(id);
+		if(!user.isPresent())
+			throw new LoginException("User doesn't exist ", -3);
+		Path imagePath = fileLocation.resolve(user.get().getProfilePic());
+		try {
+			Resource resource = new UrlResource(imagePath.toUri());
+			if(resource.exists() || resource.isReadable())
+			{
+				return resource;
+			}
+		} catch (MalformedURLException e) {
+			e.printStackTrace();
+		}
+		
+		return null;
 	}
 	
 

@@ -2,7 +2,9 @@ package com.bridgelabz.fundoo.user.service;
 
 import java.io.UnsupportedEncodingException;
 
+import org.springframework.core.io.Resource;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.bridgelabz.fundoo.response.Response;
 import com.bridgelabz.fundoo.response.ResponseToken;
@@ -63,5 +65,14 @@ public interface IUserServices {
 	 */
 	public Response resetPassword(PasswordDTO passwordDto , String token);
 	
+	/**
+	 * Purpose : Function to get information of user
+	 * @param email
+	 * @return
+	 */
 	public User getUserInfo(String email);
+	
+	public Response uploadImage(String token , MultipartFile file);
+	
+	public Resource getUploadedImage(String token);
 }

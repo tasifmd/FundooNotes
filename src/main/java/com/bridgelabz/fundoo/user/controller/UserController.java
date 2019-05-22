@@ -7,6 +7,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.PropertySource;
+import org.springframework.core.io.Resource;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -15,9 +16,11 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.bridgelabz.fundoo.response.Response;
 import com.bridgelabz.fundoo.response.ResponseToken;
@@ -131,9 +134,26 @@ public class UserController {
 		
 	}
 	
+	/**
+	 * Purpose : Function to get user info
+	 * @param email
+	 * @return
+	 */
 	@GetMapping("/userinfo")
 	public ResponseEntity<User> getUserInfo(@RequestParam String email) {
 		User user = userServices.getUserInfo(email);
 		return new ResponseEntity<User>(user, HttpStatus.OK);
+	}
+	
+	@PostMapping("/uploadprofilepic")
+	public  ResponseEntity<Response> uploadProfilePic(@RequestHeader String token , @RequestParam MultipartFile file) {
+		Response statusResponse = userServices.uploadImage(token, file);
+		return new ResponseEntity<Response> (statusResponse, HttpStatus.OK);
+	}
+	
+	@GetMapping("/getuploadedimage/{token}")
+	public ResponseEntity<Resource> getProfilePic(@PathVariable String token) {
+		Resource resourseStatus = userServices.getUploadedImage(token);
+		return new ResponseEntity<Resource> (resourseStatus, HttpStatus.OK);
 	}
 }
