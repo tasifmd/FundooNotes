@@ -44,6 +44,10 @@ public class ApplicationConfiguration {
 		return new Response();
 	}
 	
+	/**
+	 * reating bean object for GenerateEmail
+	 * @return
+	 */
 	@Bean
 	public GenerateEmail getGenerateEmail() {
 		return new GenerateEmail();
