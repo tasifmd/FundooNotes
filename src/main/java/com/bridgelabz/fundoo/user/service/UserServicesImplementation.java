@@ -35,6 +35,7 @@ import com.bridgelabz.fundoo.user.model.Email;
 import com.bridgelabz.fundoo.user.model.User;
 import com.bridgelabz.fundoo.user.repository.IUserRepository;
 import com.bridgelabz.fundoo.util.GenerateEmail;
+import com.bridgelabz.fundoo.util.RabbitMqService;
 import com.bridgelabz.fundoo.util.StatusHelper;
 import com.bridgelabz.fundoo.util.UserToken;
 
@@ -56,7 +57,7 @@ public class UserServicesImplementation implements IUserServices {
 	private IUserRepository userRepository;
 
 	@Autowired
-	private MailService mailServise;
+	private RabbitMqService mailServise;
 
 	@Autowired
 	private PasswordEncoder passwordEncoder;

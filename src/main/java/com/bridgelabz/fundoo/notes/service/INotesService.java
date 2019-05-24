@@ -142,4 +142,6 @@ public interface INotesService {
 	 * @return
 	 */
 	public Set<User> getCollaboratedUser(String token ,long noteId);
+	
+	public List<Note> searchNote(String query, String token);
 }

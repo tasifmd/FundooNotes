@@ -14,6 +14,7 @@ import org.springframework.context.annotation.PropertySource;
 import org.springframework.core.env.Environment;
 import org.springframework.stereotype.Service;
 
+import com.bridgelabz.fundoo.elasticsearch.ElasticSearch;
 import com.bridgelabz.fundoo.exception.EmailException;
 import com.bridgelabz.fundoo.exception.NotesException;
 import com.bridgelabz.fundoo.notes.dto.NotesDto;
@@ -24,6 +25,9 @@ import com.bridgelabz.fundoo.user.model.Email;
 import com.bridgelabz.fundoo.user.model.User;
 import com.bridgelabz.fundoo.user.repository.IUserRepository;
 import com.bridgelabz.fundoo.util.GenerateEmail;
+import com.bridgelabz.fundoo.util.NoteContainer;
+import com.bridgelabz.fundoo.util.NoteOperation;
+import com.bridgelabz.fundoo.util.RabbitMqService;
 import com.bridgelabz.fundoo.util.StatusHelper;
 import com.bridgelabz.fundoo.util.UserToken;
 
@@ -56,6 +60,15 @@ public class NotesServiceImpl implements INotesService {
 	@Autowired
 	private GenerateEmail generateEmail;
 	
+	@Autowired
+	private NoteContainer noteContainer;
+	
+	@Autowired
+	private RabbitMqService rabbitMqService;
+	
+	@Autowired
+	private ElasticSearch elasticSearch;
+	
 	/* (non-Javadoc)
 	 * @see com.bridgelabz.fundoo.notes.service.INotesService#createNote(com.bridgelabz.fundoo.notes.dto.NotesDto, java.lang.String)
 	 */
@@ -77,6 +90,10 @@ public class NotesServiceImpl implements INotesService {
 		user.get().getNotes().add(notes);
 		notesRepository.save(notes);
 		userRepository.save(user.get());
+		noteContainer.setNote(notes);
+		noteContainer.setNoteOperation(NoteOperation.CREATE);
+		//rabbitMqService.sendNote(noteContainer);
+		rabbitMqService.operation(noteContainer);
 		Response response = StatusHelper.statusInfo(environment.getProperty("status.notes.createdSuccessfull"), Integer.parseInt(environment.getProperty("status.success.code")));
 		return response;
 	}
@@ -97,6 +114,10 @@ public class NotesServiceImpl implements INotesService {
 		notes.setColorCode(notesDto.getColor());
 		notes.setModified(LocalDateTime.now());
 		notesRepository.save(notes);
+		noteContainer.setNote(notes);
+		noteContainer.setNoteOperation(NoteOperation.UPDATE);
+		//rabbitMqService.sendNote(noteContainer);
+		rabbitMqService.operation(noteContainer);
 		Response response = StatusHelper.statusInfo(environment.getProperty("status.notes.updated"),Integer.parseInt(environment.getProperty("status.success.code")));
 		return response;
 	}
@@ -218,6 +239,10 @@ public class NotesServiceImpl implements INotesService {
 		Note notes = notesRepository.findByIdAndUserId(noteId, id);
 		if(notes.isTrash() == true) {
 			notesRepository.delete(notes);
+			noteContainer.setNote(notes);
+			noteContainer.setNoteOperation(NoteOperation.DELETE);
+			//rabbitMqService.sendNote(noteContainer);
+			rabbitMqService.operation(noteContainer);
 			Response response = StatusHelper.statusInfo(environment.getProperty("status.note.deleted"),Integer.parseInt(environment.getProperty("status.success.code")));
 			return response;
 		}else {
@@ -284,7 +309,7 @@ public class NotesServiceImpl implements INotesService {
 		List<Note> notes = (List<Note>) notesRepository.findByUserId(id);
 		List<Note> listNotes = new ArrayList<>();
 		for(Note userNotes : notes) {
-			if(userNotes.isPin() == false) {
+			if(userNotes.isPin() == false && userNotes.isArchive() == false && userNotes.isTrash() == false) {
 				listNotes.add(userNotes);
 			}
 		}
@@ -401,5 +426,11 @@ public class NotesServiceImpl implements INotesService {
 		return collaboratedUser;
 	}
 	
-	
+	public List<Note> searchNote(String query, String token) {
+		// TODO Auto-generated method stub
+		long userId = userToken.tokenVerify(token);
+		List<Note> data = elasticSearch.searchData(query, userId);
+		System.out.println("dataata" + data);
+		return data;
+	}
 }

@@ -1,17 +1,20 @@
-package com.bridgelabz.fundoo.user.service;
+package com.bridgelabz.fundoo.util;
 
 import java.io.UnsupportedEncodingException;
 
 import javax.mail.MessagingException;
 
+import org.springframework.amqp.core.AmqpTemplate;
 import org.springframework.amqp.rabbit.annotation.RabbitListener;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.stereotype.Component;
 
+import com.bridgelabz.fundoo.elasticsearch.ElasticSearch;
+import com.bridgelabz.fundoo.notes.model.Note;
 import com.bridgelabz.fundoo.user.model.Email;
-import com.bridgelabz.fundoo.util.UserToken;
 
 /**
  * Purpose : Mail Service class to do task of mailing
@@ -19,14 +22,28 @@ import com.bridgelabz.fundoo.util.UserToken;
  * 
  */
 @Component
-public class MailService {
+public class RabbitMqService {
 	
+	@Autowired
+	private AmqpTemplate amqpTemplate;
 	
 	@Autowired
 	private JavaMailSender javaMailSender;	
 	
 	@Autowired
 	private UserToken userToken;
+	
+	@Autowired
+	private ElasticSearch elasticSearch;
+	
+	@Value("${exchange}")
+	private String exchange;
+	
+	@Value("${routingkey}")
+	private String routingkey;
+	
+	private String elasticRountingKey = "elasticRountingKey";
+	
 	
 	/**
 	 * Purpose : Method to send email
@@ -35,7 +52,7 @@ public class MailService {
 	 * @throws UnsupportedEncodingException
 	 */
 	
-	@RabbitListener(queues = "queue")
+	@RabbitListener(queues = "${queueName}")
 	public void send(Email email) {
 		
 		SimpleMailMessage message = new SimpleMailMessage(); 
@@ -62,5 +79,29 @@ public class MailService {
 	public String getLink(String link,long id) throws IllegalArgumentException, UnsupportedEncodingException 
 	{
 		return link+userToken.generateToken(id);
+	}
+	
+	public void sendNote(NoteContainer noteContainer) {
+		 amqpTemplate.convertAndSend(exchange,elasticRountingKey, noteContainer);
+	}
+	
+	@RabbitListener(queues = "elasticQueue")
+	public void operation(NoteContainer notecontainer) {
+		System.out.println("operation");
+		Note note=notecontainer.getNote();
+		switch(notecontainer.getNoteOperation()) {
+		
+		case CREATE:
+			elasticSearch.create(note);
+			break;
+			
+		case UPDATE :
+			elasticSearch.updateNote(note);
+			break;
+
+		case DELETE :
+			elasticSearch.deleteNote(note.getId());
+			break;
+		}
 	}
 }

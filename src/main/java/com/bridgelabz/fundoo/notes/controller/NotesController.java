@@ -244,4 +244,9 @@ public class NotesController {
 		Set<User> collaboratedUser = noteService.getCollaboratedUser(token, noteId);
 		return collaboratedUser;
 	}
+	@GetMapping("/search")
+	public List<Note> searchNote(@RequestHeader String token , @RequestParam String query) {
+		List<Note> notes = noteService.searchNote(query, token);
+		return notes;
+	}
 }

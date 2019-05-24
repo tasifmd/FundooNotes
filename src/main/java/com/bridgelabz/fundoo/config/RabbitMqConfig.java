@@ -24,12 +24,17 @@ public class RabbitMqConfig {
 	
 		@Value("${queueName}")
 		private String queueName;
+		
+		
+		
 		@Value("${exchange}")
 		private String exchange;
+		
 		@Value("${routingkey}")
 		private String routingkey;
 		
-		
+		private String elasticQueue = "elasticQueue";
+		private String elasticRountingKey = "elasticRountingKey";
 		/**
 		 * Purpose : Bean object for creating Queue
 		 * @return
@@ -39,6 +44,10 @@ public class RabbitMqConfig {
 			return new Queue(queueName);
 		}
 
+		@Bean
+		Queue elasticQueue() {
+			return new Queue (elasticQueue);
+		}
 		/**
 		 * Purpose : Bean object for creating DirectExchange
 		 * @return
@@ -47,7 +56,7 @@ public class RabbitMqConfig {
 		DirectExchange exchange() {
 			return new DirectExchange(exchange);
 		}
-
+		
 		
 		/**
 		 * Purpose : Bean object for creating Binding that binds queue with exchange with routing key
@@ -60,6 +69,11 @@ public class RabbitMqConfig {
 			return BindingBuilder.bind(queue).to(exchange).with(routingkey);
 		}
 
+		@Bean
+		Binding elasticBinding(Queue elasticQueue, DirectExchange exchange) {
+			return BindingBuilder.bind(elasticQueue).to(exchange).with(elasticRountingKey);
+		}
+		
 		@Bean
 		public MessageConverter jsonMessageConverter() {
 			return new Jackson2JsonMessageConverter();
