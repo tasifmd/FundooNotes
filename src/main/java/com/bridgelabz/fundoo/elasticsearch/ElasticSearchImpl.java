@@ -83,23 +83,18 @@ public class ElasticSearchImpl implements ElasticSearch{
 		SearchRequest searchRequest = new SearchRequest(INDEX).types(TYPE);
 		SearchSourceBuilder searchSourceBuilder = new SearchSourceBuilder();
 		QueryBuilder queryBuilder = QueryBuilders.boolQuery()
-				.must(QueryBuilders.queryStringQuery("*" + query + "*").analyzeWildcard(true).field("title", 2.0f)
-						.field("description").field("labelName"))
-
-				.filter(QueryBuilders.termsQuery("user.userId", String.valueOf(userId)));
-
+				.must(QueryBuilders.queryStringQuery("*" + query + "*").analyzeWildcard(true).field("title")
+				.field("description"))
+				.filter(QueryBuilders.termsQuery("userId", String.valueOf(userId)));
 		System.out.println();
 		searchSourceBuilder.query(queryBuilder);
-
 		searchRequest.source(searchSourceBuilder);
-
 		SearchResponse searchResponse = null;
 		try {
 			searchResponse = client.search(searchRequest, RequestOptions.DEFAULT);
-
 			System.out.println(searchResponse);
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
+
 			e.printStackTrace();
 		}
 
@@ -109,13 +104,11 @@ public class ElasticSearchImpl implements ElasticSearch{
 	}
 
 	private List<Note> getSearchResult(SearchResponse response) {
-
 		SearchHit[] searchHits = response.getHits().getHits();
 		List<Note> notes = new ArrayList<>();
 		for (SearchHit hit : searchHits) {
 			notes.add(objectMapper.convertValue(hit.getSourceAsMap(), Note.class));
-		}
-
+		} 
 		System.out.println(notes);
 		return notes;
 	}

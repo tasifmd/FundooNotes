@@ -293,7 +293,7 @@ public class NotesServiceImpl implements INotesService {
 		List<Note> notes = (List<Note>) notesRepository.findByUserId(id);
 		List<Note> listNotes = new ArrayList<>();
 		for(Note userNotes : notes) {
-			if(userNotes.isPin() == true) {
+			if(userNotes.isPin() == true && userNotes.isArchive() == false && userNotes.isTrash() == false) {
 				listNotes.add(userNotes);
 			}
 		}
@@ -427,10 +427,9 @@ public class NotesServiceImpl implements INotesService {
 	}
 	
 	public List<Note> searchNote(String query, String token) {
-		// TODO Auto-generated method stub
 		long userId = userToken.tokenVerify(token);
 		List<Note> data = elasticSearch.searchData(query, userId);
-		System.out.println("dataata" + data);
+		System.out.println("data" + data);
 		return data;
 	}
 }
