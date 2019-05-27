@@ -51,6 +51,9 @@ public class Note implements Serializable{
 	@Column(name = "modified")
 	private LocalDateTime modified;
 	
+	@Column(name = "reminder")
+	private String reminder;
+	
 	@Column(name="color")
 	private String colorCode;
 	
@@ -144,6 +147,14 @@ public class Note implements Serializable{
 		this.colorCode = colorCode;
 	}
 
+	public String getReminder() {
+		return reminder;
+	}
+
+	public void setReminder(String reminder) {
+		this.reminder = reminder;
+	}
+
 	public List<Label> getListLabel() {
 		return listLabel;
 	}
@@ -164,9 +175,10 @@ public class Note implements Serializable{
 	public String toString() {
 		return "Note [id=" + id + ", userId=" + userId + ", title=" + title + ", description=" + description
 				+ ", isPin=" + isPin + ", isArchive=" + isArchive + ", isTrash=" + isTrash + ", created=" + created
-				+ ", modified=" + modified + ", colorCode=" + colorCode + ", listLabel=" + listLabel
-				+ ", collaboratedUser=" + collaboratedUser + "]";
+				+ ", modified=" + modified + ", reminder=" + reminder + ", colorCode=" + colorCode + ", listLabel="
+				+ listLabel + ", collaboratedUser=" + collaboratedUser + "]";
 	}
+
 	
 	
 }

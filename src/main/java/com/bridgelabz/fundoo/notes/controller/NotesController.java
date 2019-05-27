@@ -249,4 +249,20 @@ public class NotesController {
 		List<Note> notes = noteService.searchNote(query, token);
 		return notes;
 	}
+	@PutMapping("/addreminder")
+	public ResponseEntity<Response> addingReminder(@RequestHeader String token , @RequestParam long noteId , @RequestParam String reminder) {
+		Response responseStatus = noteService.addReminder(token, noteId, reminder);
+		return new  ResponseEntity<Response> (responseStatus,HttpStatus.OK);
+	}
+	@PutMapping("/removereminder")
+	public ResponseEntity<Response> removingReminder(@RequestHeader String token , @RequestParam long noteId) { 
+		Response responseStatus = noteService.removeReminder(token, noteId);
+		return new  ResponseEntity<Response> (responseStatus,HttpStatus.OK);
+	}
+	
+	@GetMapping("/getremainders")
+	public ResponseEntity<String> getRemainder(@RequestHeader String token , @RequestParam long noteId) {
+		String responseStatus = noteService.getRemainders(token, noteId);
+		return new  ResponseEntity<String> (responseStatus,HttpStatus.OK);
+	}
 }

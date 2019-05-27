@@ -79,6 +79,7 @@ public interface INotesService {
 	 * @param token
 	 * @return
 	 */
+	
 	public List<Note> getArchiveNotes(String token);
 	/**
 	 * Purpose : Function to get all trash notes 
@@ -144,4 +145,10 @@ public interface INotesService {
 	public Set<User> getCollaboratedUser(String token ,long noteId);
 	
 	public List<Note> searchNote(String query, String token);
+	
+	public Response addReminder(String token, long noteId , String reminder);
+	
+	public Response removeReminder(String token ,long noteId);
+	
+	public String getRemainders(String token,long noteId);
 }

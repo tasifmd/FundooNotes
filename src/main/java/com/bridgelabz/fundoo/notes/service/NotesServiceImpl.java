@@ -150,15 +150,15 @@ public class NotesServiceImpl implements INotesService {
 	public List<Note> getAllNotes(String token) {
 		long id = userToken.tokenVerify(token);
 		List<Note> notes = (List<Note>) notesRepository.findByUserId(id);
-		List<Note> listNotes = new ArrayList<>();
-		for(Note userNotes : notes) {
-			//NotesDto notesDto = modelMapper.map(userNotes, NotesDto.class);
-			if(userNotes.isArchive() == false && userNotes.isTrash() == false) {
-				listNotes.add(userNotes);
-				
-			}
-		}
-		return listNotes;
+//		List<Note> listNotes = new ArrayList<>();
+//		for(Note userNotes : notes) {
+//			//NotesDto notesDto = modelMapper.map(userNotes, NotesDto.class);
+//			if(userNotes.isArchive() == false && userNotes.isTrash() == false) {
+//				listNotes.add(userNotes);
+//				
+//			}
+//		}
+		return notes;
 	}
 
 	/* (non-Javadoc)
@@ -431,5 +431,42 @@ public class NotesServiceImpl implements INotesService {
 		List<Note> data = elasticSearch.searchData(query, userId);
 		System.out.println("data" + data);
 		return data;
+	}
+
+	@Override
+	public Response addReminder(String token, long noteId, String time) {
+		long userId = userToken.tokenVerify(token);
+		Optional<User> user = userRepository.findById(userId);
+		if(!user.isPresent())
+			throw new NotesException("No user exist", -5);	
+		Optional<Note> note = notesRepository.findById(noteId);
+		note.get().setReminder(time);
+		notesRepository.save(note.get());
+		Response response = StatusHelper.statusInfo(environment.getProperty("status.reminder.added"),Integer.parseInt(environment.getProperty("status.success.code")));
+		return response;
+	}
+
+	@Override
+	public Response removeReminder(String token, long noteId) {
+		long userId = userToken.tokenVerify(token);
+		Optional<User> user = userRepository.findById(userId);
+		if(!user.isPresent())
+			throw new NotesException("No user exist", -5);	
+		Optional<Note> note = notesRepository.findById(noteId);
+		note.get().setReminder(null);
+		notesRepository.save(note.get());
+		Response response = StatusHelper.statusInfo(environment.getProperty("status.reminder.removed"),Integer.parseInt(environment.getProperty("status.success.code")));
+		return response;
+	}
+
+	@Override
+	public String getRemainders(String token, long noteId) {
+		long userId = userToken.tokenVerify(token);
+		Optional<User> user = userRepository.findById(userId);
+		if(!user.isPresent())
+			throw new NotesException("No user exist", -5);	
+		Optional<Note> note = notesRepository.findById(noteId);
+		String remainder = note.get().getReminder();
+		return remainder;
 	}
 }
