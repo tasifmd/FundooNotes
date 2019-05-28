@@ -44,7 +44,6 @@ public class ElasticSearchImpl implements ElasticSearch{
 		try {
 			client.index(indexRequest, RequestOptions.DEFAULT);
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 
