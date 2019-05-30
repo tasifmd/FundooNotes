@@ -3,7 +3,7 @@ Built-By: admin1
 Build-Jdk: 11.0.3
 Implementation-Title: demo
 Implementation-Version: 0.0.1-SNAPSHOT
-Implementation-Vendor-Id: com.example
+Implementation-Vendor-Id: com.bridgelabz
 Implementation-URL: https://projects.spring.io/spring-boot/#/spring-boot
  -starter-parent/demo
 Created-By: Maven Integration for Eclipse

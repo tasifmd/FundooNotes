@@ -35,6 +35,17 @@ public class UserDTO {
 	public UserDTO() {
 		super();
 	}
+	
+	public UserDTO(@NotEmpty(message = "please provide your name") String name,
+			@Email(regexp = "^[_A-Za-z0-9-]+(\\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\\.(?:[A-Z]{2,}|com|org))+$") @NotEmpty(message = "Please provide valid email") String email,
+			@NotEmpty(message = "Please provide password") @Length(min = 6, max = 50, message = "password must be at least 6 character and max 50 character") String password,
+			@Pattern(regexp = "[0-9]{10}", message = "provide valid mobile number") String mobileNumber) {
+		super();
+		this.name = name;
+		this.email = email;
+		this.password = password;
+		this.mobileNumber = mobileNumber;
+	}
 
 	public String getName() {
 		return name;
