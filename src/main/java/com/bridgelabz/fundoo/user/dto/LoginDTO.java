@@ -23,6 +23,14 @@ public class LoginDTO {
 	public LoginDTO() {
 		super();
 	}
+	
+	public LoginDTO(
+			@Email(regexp = "^[_A-Za-z0-9-]+(\\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\\.(?:[A-Z]{2,}|com|org))+$") @NotEmpty(message = "Please provide valid email") String email,
+			@NotEmpty(message = "Please provide password") String password) {
+		super();
+		this.email = email;
+		this.password = password;
+	}
 
 	public String getEmail() {
 		return email;

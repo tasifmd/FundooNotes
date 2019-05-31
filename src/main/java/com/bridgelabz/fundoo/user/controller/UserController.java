@@ -38,7 +38,6 @@ import com.bridgelabz.fundoo.user.service.IUserServices;
 @RestController
 @CrossOrigin(allowedHeaders = "*" ,origins = "*")
 @RequestMapping("/user")
-
 //annotation for set environment file 
 @PropertySource("classpath:message.properties")
 public class UserController {
