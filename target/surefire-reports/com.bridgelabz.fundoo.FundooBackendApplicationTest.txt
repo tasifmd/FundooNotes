@@ -1,18 +1,4 @@
 -------------------------------------------------------------------------------
 Test set: com.bridgelabz.fundoo.FundooBackendApplicationTest
 -------------------------------------------------------------------------------
-Tests run: 2, Failures: 0, Errors: 2, Skipped: 0, Time elapsed: 49.059 s <<< FAILURE! - in com.bridgelabz.fundoo.FundooBackendApplicationTest
-loginTest(com.bridgelabz.fundoo.FundooBackendApplicationTest)  Time elapsed: 0.284 s  <<< ERROR!
-org.mockito.exceptions.base.MockitoException: 
-
-Cannot mock/spy class org.springframework.test.web.servlet.MockMvc
-Mockito cannot mock/spy because :
- - final class
-
-registerTest(com.bridgelabz.fundoo.FundooBackendApplicationTest)  Time elapsed: 0 s  <<< ERROR!
-org.mockito.exceptions.base.MockitoException: 
-
-Cannot mock/spy class org.springframework.test.web.servlet.MockMvc
-Mockito cannot mock/spy because :
- - final class
-
+Tests run: 3, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 7.399 s - in com.bridgelabz.fundoo.FundooBackendApplicationTest

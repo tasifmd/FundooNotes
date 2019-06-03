@@ -6,7 +6,6 @@ import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
-import org.mockito.Mock;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -72,6 +71,18 @@ public class FundooBackendApplicationTest {
 		 mvc.perform( MockMvcRequestBuilders
 				 .post("/user/login")
 				 .content(asJsonString(new LoginDTO("tasifmd96@gmail.com", "tasifmd")))
+				 .contentType(MediaType.APPLICATION_JSON)
+			     .accept(MediaType.APPLICATION_JSON))
+			  	 .andDo(print())
+			     .andExpect(status().isOk());
+	}
+	
+	@Test
+	public void forgotTest() throws Exception {
+		 mvc.perform( MockMvcRequestBuilders
+				 .post("/user/forgotpassword")
+				 .content("{\"email\" : \"tasifmd96@gmail.com\" }")
+				 //.content(asJsonString("tasifmd96@gmail.com"))
 				 .contentType(MediaType.APPLICATION_JSON)
 			     .accept(MediaType.APPLICATION_JSON))
 			  	 .andDo(print())
